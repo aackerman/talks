@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>ES6 Features</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>ES6</h2>
+        </section>
+
+        <section>
+          <p>ECMA-262 - the standard</p>
+          <p>TC39 - the committee<p>
+          <p>JavaScript - embedded in history</p>
+        </section>
+
+        <section>
+          <p>EcmaScript releases</p>
+          <ul>
+            <li>1: 1997</li>
+            <li>2: 1998</li>
+            <li>3: 1999</li>
+            <li>4: (╯°□°)╯︵┻━┻</li>
+            <li>5: 2005</li>
+            <li>6: Forthcoming</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <p>Arrows Functions</p>
+          </section>
+
+          <section>
+<pre><code data-trim>
+function() {
+  var self = this;
+  $xhr = $.ajax({ ... })
+  $xhr.then(function(){
+    self.otherFunc();
+  });
+}
+</code></pre>
+            <p>Old and busted</p>
+          </section>
+
+          <section>
+<pre><code data-trim>
+function() {
+  var $xhr = $.ajax({ ... })
+  $xhr.then((response) => {
+    this.otherFunc(response);
+  });
+}
+</code></pre>
+            <p>New hotness</p>
+          </section>
+          <section>
+            <div><code>() => {...}</code></div><br>
+            <div><code>x => x * x</code></div><br>
+            <ul>
+              <li>Implicit return for an expression</li>
+              <li>Optional block for an expression</li>
+              <li>Optional parens for a single argument</li>
+              <li>Lexical <code>this</code></li>
+            </ul>
+          </section>
+
+          <section>
+            <p><code>[1,2,3].reduce((x, y) => x + y, 0); // 6</code></p>
+            <br>
+            <p>Simple reduce</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>String methods</p>
+          </section>
+
+          <section>
+            <p>String.prototype.startsWith</p>
+<pre><code data-trim>
+String.prototype.startsWith = function(s) {
+  return this.indexOf(s) === 0;
+};
+</code></pre>
+          </section>
+
+          <section>
+            <p>String.prototype.endsWith</p>
+<pre><code data-trim>
+String.prototype.endsWith = function(s) {
+  var t = String(s);
+  var index = this.lastIndexOf(t);
+  return index >= 0 && index === this.length - t.length;
+};
+</code></pre>
+          </section>
+
+          <section>
+            <p>String.prototype.contains</p>
+<pre><code data-trim>
+String.prototype.contains = function(s) {
+  return this.indexOf(s) !== -1;
+};
+</code></pre>
+          </section>
+
+          <section>
+            <p>String.prototype.toArray</p>
+<pre><code data-trim>
+String.prototype.toArray = function() {
+  return this.split('');
+};
+</code></pre>
+          </section>
+
+          <section>
+            <p>String.prototype.repeat</p>
+<pre><code data-trim>
+String.prototype.repeat = function(n) {
+  var n = n || 1;
+  return Array(n + 1).join(this);
+}
+</code></pre>
+          </section>
+
+          <section>
+            <p>String.fromCodePoint</p>
+            <p><code>String.fromCodePoint(0x41); // -> 'A'</code></p>
+            <a href="https://github.com/mathiasbynens/String.fromCodePoint">polyfill here</a>
+          </section>
+
+          <section>
+            <p>String.prototype.codePointAt</p>
+            <p>Returns the code point for a given index of a string</p>
+            <a href="https://github.com/mathiasbynens/String.prototype.codePointAt">polyfill here</a>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>Array methods</p>
+          </section>
+
+          <section>
+            <p>Array.from</p>
+<pre><code data-trim>
+Array.from = function(arrayLike) {
+  return Array.prototype.slice.call(arrayLike);
+}
+</code></pre>
+          </section>
+
+          <section>
+            <p>Array.of</p>
+<pre><code data-trim>
+Array.of = function() {
+  return Array.prototype.slice.call(arguments);
+};
+</code></pre>
+          </section>
+
+          <section>
+            <p>Array.prototype.find</p>
+            <p>Returns the first element that matches a predicate</p>
+            <p>Analogous to <code>_.find</code></p>
+          </section>
+
+          <section>
+            <p>Array.prototype.findIndex</p>
+            <p>Returns the first index that matches a predicate or -1</p>
+          </section>
+
+          <section>
+            <p>Array.prototype.fill</p>
+            <p>Fill an array with a value based on a starting and ending index</p>
+          </section>
+        </section>
+
+        <section>
+          <p>Number additions</p>
+          <ul>
+            <li>isFinite()</li>
+            <li>isInteger()</li>
+            <li>isSafeInteger()</li>
+            <li>isNaN()</li>
+            <li>EPSILON</li>
+            <li>MIN_SAFE_INTEGER</li>
+            <li>MAX_SAFE_INTEGER</li>
+          </ul>
+        </section>
+
+        <section>
+          <p>Math additions</p>
+          <ul>
+            <li>clz32c()</li>
+            <li>imulc()</li>
+            <li>signc()</li>
+            <li>log10()</li>
+            <li>log2()</li>
+            <li>log1p()</li>
+            <li>expm1()</li>
+            <li>cosh()</li>
+            <li>sinh()</li>
+            <li>tanh()</li>
+            <li>acosh()</li>
+            <li>asinh()</li>
+            <li>atanh()</li>
+            <li>hypot()</li>
+            <li>trunc()</li>
+            <li>fround()</li>
+            <li>cbrt()</li>
+          </ul>
+        </section>
+
+        <section>
+          <code>const</code><br>
+          <br>
+          <p>Constants existed in C since 1972.</p>
+          <p>Finally making it to JS, 20 years after inception.</p>
+          <p>Static assignment, throws on an attempt to reassign.</p>
+        </section>
+
+        <section>
+          <code>let</code>
+          <br><br>
+          <ul>
+            <li>Scoped to a single block</li>
+            <li>Must be declared before use</li>
+            <li>Cannot be declared multiple times in single block</li>
+            <li>Can be declared multiple times in single function</li>
+          </ul>
+        </section>
+
+        <section>
+          <code>function add(x, y = 5){ return x + y }</code>
+          <br><br>
+          <p>Default Parameters</p>
+        </section>
+
+        <section>
+          <section>
+            <h1>. . .</h1>
+          </section>
+
+          <section>
+            <p>Rest Parameters</p>
+            <br>
+            <small><code>
+              function() { var args = Array.prototype.slice.call(arguments); }
+            </code></small>
+            <br><br>
+            <p>Old and busted</p>
+          </section>
+
+          <section>
+            <code>
+              function (...args) { }
+            </code>
+            <br><br>
+            <p>New hotness</p>
+            <p><code>args</code> is a real JS Array and not an Array-like object</p>
+            <p><code>arguments</code> object is not available along side rest parameters</p>
+          </section>
+
+          <section>
+            <h1>. . .</h1>
+            <p>Spread Operator</p>
+            <p>Used to spread an array into positional arguments</p>
+<pre><code data-trim>
+function f(x, y, z) {
+  return x + y + z;
+}
+// Pass each elem of array as argument
+f(...[1,2,3]) == 6
+</code></pre>
+          </section>
+        </section>
+
+
+        <section>
+          <p>Class syntax</p>
+<pre><code data-trim>
+class Chicken {
+  constructor() {
+    this.wings = 2;
+  }
+  hasBones() {
+    return true;
+  }
+}
+</code></pre>
+          <ul>
+            <li>Constructor initializers</li>
+            <li>Inheritance</li>
+            <li>Super calls</li>
+            <li>Static functions</li>
+            <li>Sugar on top of current sematics</li>
+            <li>Native built-ins can be extended</li>
+          </ul>
+        </section>
+
+        <section>
+          <p><code>extends</code> syntax</p>
+          <p>Allows extension of native built-ins</p>
+<pre><code data-trim>
+class MyArray extends Array {
+  constructor() { constructor(...args) { super(...args); } }
+}
+</code></pre>
+          <p>Acts as a real Array with its length property updated accordingly when elements are added or removed</p>
+        </section>
+
+        <section>
+          <p>Object literal enhancements</p>
+<pre><code data-trim>
+var handler = function(){}
+var obj = {
+  // Shorthand for ‘handler: handler’
+  handler,
+  // no longer requires key or function key word
+  // super calls
+  toString() {
+    return 'obj' + super.toString();
+  }
+}
+</code></pre>
+        </section>
+
+        <section>
+          <p>Computer Property Names in Object literals</p>
+<pre><code data-trim>
+var x = 'z';
+var foo = { [x]: 1 };
+console.log(foo['z']); // 1
+</code></pre>
+        </section>
+
+        <section>
+          <section>
+            <p>Destructuring</p>
+          </section>
+
+          <section>
+            <p><code>{ a, b } = { a: 'a', b: 'b', c: 'c', d: 'd'}</code><p>
+            <p>Can be deeply nested<p>
+            <p>Defines variables in current scope</p>
+            <p>Doesn't throw, can return undefined</p>
+            <p><code>[a] = []; // a == undefined</code></p>
+          </section>
+
+          <section>
+<pre><code data-trim>
+var a = 1;
+var b = 3;
+
+[a, b] = [b, a];
+</code></pre>
+            <p>Simple swap operation with no temp variables</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>Map and Sets</p>
+          </section>
+
+          <section>
+            <p>Map</p>
+<pre><code data-trim>
+var m = new Map();
+m.set('hello', 42);
+m.get('hello'); // 42
+</code></pre>
+            <p>Allows any type of object as a key</p>
+          </section>
+
+          <section>
+            <p>Set</p>
+<pre><code data-trim>
+var s = new Set();
+s.add('hello').add('world');
+s.has('hello') == true; // true
+s.size == 2; // true
+s.delete('world');
+s.size == 1; // true
+s.clear;
+</code></pre>
+            <p>Sets have unique elements</p>
+          </section>
+
+          <section>
+            <p>WeakMap</p>
+<pre><code data-trim>
+var s = { foo: 'bar' }
+var wm = new WeakMap();
+wm.set(s, { extra: 42 });
+wm.get(s); // { extra: 42 }
+</code></pre>
+            <p>Object-only keyed maps with weakly held references</p>
+            <p>If the external references fall out of scope, they fall out of the map</p>
+          </section>
+
+          <section>
+            <p>WeakSet</p>
+<pre><code data-trim>
+var ws = new WeakSet();
+ws.add({ hello: 42 });
+ws.size == undefined; // true
+</code></pre>
+            <p>No external references mean it cannot be held in the set</p>
+          </section>
+        </section>
+
+        <section>
+          <p>Template strings</p>
+<pre><code data-trim>
+let x = 'multi-line';
+`a real
+
+${x} JS
+
+string`
+</code></pre>
+          <p>Multiline strings using `backticks`</p>
+          <p>Interpolation using <code>${variable}</code> syntax</p>
+          <p>Sugar for string construction</p>
+        </section>
+
+        <section>
+          <code>Object.assign( target, ...sources )</code>
+          <br><br>
+          <p>Analogous to <code>_.extend</code> or <code>$.extend</code></p>
+          <p>No recursive option :(</p>
+        </section>
+
+        <section>
+          <code>Object.is</code><br>
+          <br>
+          <p>Essentially triple equals with special handling for <code>NaN</code> and <code>+0/-0</code></p>
+          <br>
+          <code>Object.is(NaN, NaN); // true</code><br>
+          <code>NaN === NaN // false</code><br>
+        </section>
+
+        <section>
+          <h3>Native Promises</h3>
+          <p>Smaller library dependencies</p>
+          <p>Libraries will still be used for sugar</p>
+<pre><code data-trim>
+let p = new Promise();
+p.then((value) => {
+  console.log(value);
+}, (err) => {
+  console.log(err);
+})
+p.fulfill('hello'); // hello
+</code></pre>
+          <p>DOM promises are coming separately from ES6</p>
+          <p>ES6 Promises are a superset of DOM promises</p>
+        </section>
+
+        <section>
+          <section>
+            <p>Modules</p>
+          </section>
+
+          <section>
+<pre><code data-trim>
+// lib/math.js
+export function sum(x, y) {
+  return x + y;
+}
+export var pi = 3.141593;
+</code></pre>
+            <p>A simple module that exports a function and a variable</p>
+          </section>
+
+          <section>
+            <p><code>export default</code></p>
+            <p>Sets the default import value</p>
+<pre><code data-trim>
+// hello.js
+export default function() { console.log('hello') }
+</code></pre>
+<pre><code data-trim>
+import hello from 'hello.js'
+hello() // hello
+</code></pre>
+          </section>
+
+          <section>
+            <p><code>export * from 'math';</code></p>
+            <p>Used to easily export everything from another library and provide extensions or overrides</p>
+          </section>
+
+          <section>
+            <p>Module loaders</p>
+<pre><code data-trim>
+System.import('lib/math').then(function(m) {
+  alert("2π = " + m.sum(m.pi, m.pi));
+});
+</code></pre>
+              <p>Built-in async module loader, with promises</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <p>Proxies</p>
+          </section>
+
+          <section>
+            <p>Traps and runtime Meta-operations on objects</p>
+            <ul>
+              <li>get</li>
+              <li>set</li>
+              <li>has</li>
+              <li>deleteProperty</li>
+              <li>apply</li>
+              <li>construct</li>
+              <li>getOwnPropertyDescriptor</li>
+              <li>defineProperty</li>
+              <li>getPrototypeOf</li>
+              <li>setPrototypeOf</li>
+              <li>enumerate</li>
+              <li>ownKeys</li>
+              <li>preventExtensions</li>
+              <li>isExtensible</li>
+            </ul>
+          </section>
+
+          <section>
+<pre><code data-trim>
+var target = {};
+var handler = {
+  get: function (receiver, name) {
+    return `Hello, ${name}!`;
+  }
+};
+
+var p = new Proxy(target, handler);
+p.world === 'Hello, world!';
+</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <p>What I didn't cover</p>
+          <ul>
+            <li>Reflection API</li>
+            <li>Symbols</li>
+            <li>Array Comprehensions</li>
+            <li>Generators/<code>yield</code></li>
+            <li>Iterators</li>
+            <li>Tail Calls</li>
+            <li>For...of loops</li>
+            <li>Classes in-depth</li>
+            <li>Unicode additions</li>
+            <li>Regexp 'u' and 'y' flags</li>
+          </ul>
+        </section>
+
+        <section>
+          <p>Using parts of ES6 right now</p>
+          <ul>
+            <li>Ember using ES6 transpiled to JS right now!</li>
+            <li>Angular 2.0 as well</li>
+            <li><code>node --harmony</code></li>
+            <li><a href="https://github.com/square/es6-module-transpiler">es6-module-transpiler</a></li>
+            <li><a href="https://github.com/google/traceur-compiler">traceur-compiler</a></li>
+            <li><a href="https://github.com/aaronfrost/grunt-traceur">grunt-traceur</a></li>
+            <li><a href="https://github.com/sindresorhus/gulp-traceur">gulp-traceur</a></li>
+            <li><a href="https://github.com/sindresorhus/broccoli-traceur">broccoli-traceur</a></li>
+            <li><a href="https://github.com/aackerman/traceur-rails">traceur-rails</a></li>
+        </section>
+
+        <section>
+          <h3>References</h3>
+          <ul>
+            <li><a href="http://kangax.github.io/compat-table/es6/">http://kangax.github.io/compat-table/es6/</a></li>
+            <li><a href="https://github.com/lukehoban/es6features">https://github.com/lukehoban/es6features</a></li>
+            <li><a href="http://people.mozilla.org/~jorendorff/es6-draft.html">http://people.mozilla.org/~jorendorff/es6-draft.html</a></li>
+            <li><a href="http://esdiscuss.org/">http://esdiscuss.org/</a></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
