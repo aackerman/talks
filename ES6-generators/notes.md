@@ -2,9 +2,11 @@
 
 ## Syntax
 
+```
 function *name()
 
 function keyword, any whitespace, star, any whitespace, function name and/or parameter list
+```
 
 ## Iterable Interface
 
