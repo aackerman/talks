@@ -80,6 +80,7 @@ generator.next(); // { value: undefined, done: true }
 
 ## Userland iterables
 
+```
 // define the object
 var spam = {};
 
@@ -94,15 +95,27 @@ spam[Symbol.iterator] = function*() {
 for(var value of spam) {
   console.log(value);
 }
+```
 
-## Task.js
+## `Task.js`, `co`, `Q.async`
+
+Both task.js and co work with generators to yield to all async operations, throw on promise errors and return resolved promise values.
 
 ```
-spawn(function*(){
+task.spawn(function*(){
   try {
     yield response = xhr.get('/ham');
   } catch(err) {
     console.log('caught error', err)
   }
 });
+
+co(function*(){
+  try {
+    yield response = xhr.get('/ham');
+  } catch(err) {
+    console.log('caught error', err)
+  }
+});
+```
 
