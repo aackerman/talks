@@ -82,6 +82,8 @@ generator.next(); // { value: undefined, done: true }
 
 ## Userland iterables
 
+Any user defined object can be given a generator.
+
 ```
 // define the object
 var spam = {};
