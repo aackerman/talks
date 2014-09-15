@@ -110,7 +110,7 @@ Both task.js and co work with generators to yield to all async operations, throw
 ```
 task.spawn(function*(){
   try {
-    yield response = xhr.get('/ham');
+    var response = yield xhr.get('/ham');
   } catch(err) {
     console.log('caught error', err)
   }
@@ -118,7 +118,7 @@ task.spawn(function*(){
 
 co(function*(){
   try {
-    yield response = xhr.get('/ham');
+    var response = yield xhr.get('/ham');
   } catch(err) {
     console.log('caught error', err)
   }
