@@ -2,6 +2,8 @@
 
 ## Syntax
 
+A generator is the literal syntax for an iterable.
+
 ```
 function *name()
 
