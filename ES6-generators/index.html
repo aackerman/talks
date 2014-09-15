@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>reveal.js - The HTML Presentation Framework</title>
+    <title>Generators, Iterables, and yield</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -80,7 +80,24 @@ for(var i of toInfinityAndBeyond()) {
         </section>
 
         <section>
+          <p>Async code with <code>co</code></p>
           <pre><code data-trim contenteditable>
+var co = require('co'), fs = require('fs');
+
+function size(file) {
+  return function(fn){
+    fs.stat(file, function(err, stat){
+      if (err) return fn(err);
+      fn(null, stat.size);
+    });
+  };
+}
+
+co(function *(){
+  var a = yield size('index.html');
+  var b = yield size('notes.md');
+  console.log(a, b);
+})();
           </code></pre>
         </section>
 
