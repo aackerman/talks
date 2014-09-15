@@ -16,7 +16,7 @@ function keyword, any whitespace, star, any whitespace, function name and/or par
 function *ham() {
   yield 1;
   yield 2;
-  return 3;
+  yield 3;
 }
 
 var h = ham(); // halts execution of the ham method and returns a iterator
@@ -28,7 +28,13 @@ h.next(); // { value: 3, done: true  }
 
 // iterators return undefined if the final yield or return value has already been returned and continues to return true for the done value of the iterator
 h.next(); // { value: undefined, done: true }
+
+h.throw('ham'); // throws an exception
 ```
+
+## yield
+
+The yield keyword gives up control of run-to-completion sematics and allows to caller to step through the process of the method.
 
 ## yield* syntax
 
