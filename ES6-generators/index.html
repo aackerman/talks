@@ -118,6 +118,23 @@ console.log(h.next(16)) // { value: 30, done: true } pass 16 and set to y
         </section>
 
         <section>
+          <p>Yielding to another generator</p>
+          <pre><code data-trim contenteditable>
+function *a() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+function *b() {
+  yield 0;
+  var x = yield *a();
+  console.log(x);
+}
+          </code></pre>
+        </section>
+
+        <section>
           <p>Generators and flow control with <code>Q</code></p>
           <pre><code data-trim contenteditable>
 var Q    = require('q');
@@ -132,9 +149,7 @@ Q.spawn(function *(){
           </code></pre>
         </section>
 
-        <section>
-          <p>yield* syntax</p>
-        </section>
+
 
         <section>
           <p>iterator.throw()</p>
