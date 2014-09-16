@@ -135,6 +135,10 @@ function *b() {
         </section>
 
         <section>
+          <p>iterator.throw()</p>
+        </section>
+
+        <section>
           <p>Generators and flow control with <code>Q</code></p>
           <pre><code data-trim contenteditable>
 var Q    = require('q');
@@ -149,14 +153,28 @@ Q.spawn(function *(){
           </code></pre>
         </section>
 
-
-
         <section>
-          <p>iterator.throw()</p>
-        </section>
+          <pre><code data-trim contenteditable>
+var Q    = require('q');
+var fs   = require('fs');
+var iPromiseToThrowAnError = function() {
+  return {
+    then: function(){
+      throw new Error('ham');
+    }
+  };
+};
 
-        <section>
-          <p>synchronous-like flow control using try catch
+Q.spawn(function *(){
+  try {
+    yield iPromiseToThrowAnError();
+  }
+  catch(e) {
+    console.log('caught the error');
+  }
+  console.log('finished');
+});
+          </code></pre>
         </section>
 
         <section>
