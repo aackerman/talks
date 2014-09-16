@@ -109,7 +109,7 @@ for(var value of spam) {
 }
 ```
 
-## `Task.js`, `co`, `Q.async`
+## `Task.js`, `co`, `Q.spawn`
 
 Both task.js and co work with generators to yield to all async operations, throw on promise errors and return resolved promise values.
 
@@ -130,4 +130,6 @@ co(function*(){
   }
 });
 ```
+
+## Message passing out, message passing in
 
