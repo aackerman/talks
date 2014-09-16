@@ -1,18 +1,9 @@
-var co = require('co');
-var fs = require('fs');
+var Q    = require('q');
+var fs   = require('fs');
+var stat = Q.denodeify(fs.stat);
 
-function size(file) {
-  return function(fn){
-    fs.stat(file, function(err, stat){
-      if (err) return fn(err);
-      fn(null, stat.size);
-    });
-  };
-}
-
-co(function *(){
-  var a = yield size('index.html');
-  var b = yield size('notes.md');
-  console.log(a, b);
-  return [a, b];
-})();
+Q.spawn(function *(){
+  var stat1 = yield stat('index.html');
+  var stat2 = yield stat('notes.md');
+  console.log(stat1.size, stat2.size);
+});

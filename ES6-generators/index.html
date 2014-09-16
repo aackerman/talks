@@ -59,6 +59,32 @@ var iter = ham(); // invoke the generator to return an iterable
         </section>
 
         <section>
+          <p><code>for..of</code> loops</p>
+          <pre><code data-trim contenteditable>
+for(var i of [4,5,6]) {
+  console.log(i); // 4 5 6
+}
+          </code></pre>
+          <p>Returns values vs. <code>for..in</code> which returns keys</p>
+          <p>Works with any iterables</p>
+        </section>
+
+        <section>
+          <p>Generators with <code>for..of</code> loops</p>
+          <pre><code data-trim contenteditable>
+function *ham() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+for(var i of ham()) {
+  console.log(i); // 1 2
+}
+          </code></pre>
+          <p><code>return</code> statement is ignored in <code>for..of</code> loops</p>
+        </section>
+
+        <section>
           <p>Infinite generator</p>
           <pre><code data-trim contenteditable>
 function *toInfinityAndBeyond() {
@@ -76,33 +102,22 @@ for(var i of toInfinityAndBeyond()) {
         </section>
 
         <section>
-
-        </section>
-
-        <section>
-          <p>Async code with <code>co</code></p>
+          <p>Generators and flow control with <code>Q</code></p>
           <pre><code data-trim contenteditable>
-var co = require('co'), fs = require('fs');
+var Q    = require('q');
+var fs   = require('fs');
+var stat = Q.denodeify(fs.stat);
 
-function size(file) {
-  return function(fn){
-    fs.stat(file, function(err, stat){
-      if (err) return fn(err);
-      fn(null, stat.size);
-    });
-  };
-}
-
-co(function *(){
-  var a = yield size('index.html');
-  var b = yield size('notes.md');
-  console.log(a, b);
-})();
+Q.spawn(function *(){
+  var stat1 = yield stat('index.html');
+  var stat2 = yield stat('notes.md');
+  console.log(stat1.size, stat2.size);
+});
           </code></pre>
         </section>
 
         <section>
-          <h1>THE END</h1>
+          <h1>Generators are available in <code>Node v0.11.3 with --harmony</code></h1>
         </section>
       </div>
 

@@ -38,7 +38,7 @@ The yield keyword gives up control of run-to-completion sematics and allows to c
 
 ## yield* syntax
 
-Allows yielding to another generator until that generator returns a `done: true` value.
+Allows yielding to another generator until that generator returns a `done: true` value. The value returned from the yielded generator is the return value of that generator.
 
 ```
 function *ham() {
@@ -114,7 +114,7 @@ for(var value of spam) {
 Both task.js and co work with generators to yield to all async operations, throw on promise errors and return resolved promise values.
 
 ```
-task.spawn(function*(){
+Q.spawn(function*(){
   try {
     var response = yield xhr.get('/ham');
   } catch(err) {
