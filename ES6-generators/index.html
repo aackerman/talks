@@ -102,6 +102,22 @@ for(var i of toInfinityAndBeyond()) {
         </section>
 
         <section>
+          <p>Passing messages to the generator</p>
+          <pre><code data-trim contenteditable>
+function *ham() {
+  var x = yield 1;
+  var y = yield 2;
+  return x + y;
+}
+
+var h = ham();
+console.log(h.next())   // { value: 1 }
+console.log(h.next(14)) // { value: 2 } pass 14 and set to x
+console.log(h.next(16)) // { value: 30, done: true } pass 16 and set to y
+          </code></pre>
+        </section>
+
+        <section>
           <p>Generators and flow control with <code>Q</code></p>
           <pre><code data-trim contenteditable>
 var Q    = require('q');
@@ -118,11 +134,6 @@ Q.spawn(function *(){
 
         <section>
           <p>yield* syntax</p>
-        </section>
-
-        <section>
-          <p>Yielding messages out</p>
-          <p>Passing messages in</p>
         </section>
 
         <section>
