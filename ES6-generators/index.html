@@ -136,6 +136,17 @@ function *b() {
 
         <section>
           <p>iterator.throw()</p>
+          <pre><code data-trim contenteditable>
+function *foo() { }
+
+var iter = foo();
+try {
+    iter.throw( "Oops!" );
+}
+catch (err) {
+    console.log( "Error: " + err ); // Error: Oops!
+}
+          </code></pre>
         </section>
 
         <section>
@@ -155,21 +166,16 @@ Q.spawn(function *(){
 
         <section>
           <pre><code data-trim contenteditable>
-var Q    = require('q');
-var fs   = require('fs');
-var iPromiseToThrowAnError = function() {
-  return {
-    then: function(){
-      throw new Error('ham');
-    }
-  };
+var Q = require('q'), fs = require('fs');
+
+var immaThrowAnError = function() {
+  return {then: function(){throw new Error('ham'); }};
 };
 
 Q.spawn(function *(){
   try {
-    yield iPromiseToThrowAnError();
-  }
-  catch(e) {
+    yield immaThrowAnError();
+  } catch(e) {
     console.log('caught the error');
   }
   console.log('finished');
@@ -178,11 +184,8 @@ Q.spawn(function *(){
         </section>
 
         <section>
-          <p>Facebook regenerator</p>
-        </section>
-
-        <section>
-          <p>CSP in JavaScript</p>
+          <p><a href="http://facebook.github.io/regenerator/">Facebook regenerator</a></p>
+          <img src="img/regenerator.png">
         </section>
 
         <section>
