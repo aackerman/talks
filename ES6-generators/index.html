@@ -145,6 +145,9 @@ function *b() {
   var x = yield* a();
   console.log(x);
 }
+for (var i of b()) {
+  console.log(i)
+}
           </code></pre>
         </section>
 
