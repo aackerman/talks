@@ -48,24 +48,24 @@
         <section>
           <p>Generator syntax</p>
           <pre><code data-trim contenteditable>
-function *ham() {
+function *nums() {
   yield 1;
   yield 2;
   yield 3;
 }
 
-var iter = ham(); // invoke the generator to return an iterable
+var iter = nums(); // invoke the generator to return an iterable
           </code></pre>
         </section>
 
         <section>
           <p>Iteratable interface</p>
           <pre><code data-trim contenteditable>
-function *ham() {
+function *foo() {
   var x = yield 1;
   console.log(x);
 }
-var iter = ham();
+var iter = foo();
 iter.next();
 iter.next(5);
 iter.throw('oops');
@@ -87,12 +87,12 @@ for(var i of [4,5,6]) {
           <p>Generators with <code>for..of</code> loops</p>
           <pre><code data-trim contenteditable>
 function *ham() {
-  yield 1;
-  yield 2;
-  return 3;
+  yield 'delicious';
+  yield 'tasty';
+  return 'moist';
 }
-for(var i of ham()) {
-  console.log(i); // 1 2
+for(var taste of ham()) {
+  console.log(taste); // delicious tasty
 }
           </code></pre>
           <p><code>return</code> statement is ignored in <code>for..of</code> loops</p>
@@ -118,16 +118,16 @@ for(var i of toInfinityAndBeyond()) {
         <section>
           <p>Passing messages to the generator</p>
           <pre><code data-trim contenteditable>
-function *ham() {
+function *bar() {
   var x = yield 1;
   var y = yield 2;
   return x + y;
 }
 
-var h = ham();
-console.log(h.next())   // { value: 1 }
-console.log(h.next(14)) // { value: 2 } pass 14 and set to x
-console.log(h.next(16)) // { value: 30, done: true } pass 16 and set to y
+var b = bar();
+console.log(b.next())   // { value: 1 }
+console.log(b.next(14)) // { value: 2 } pass 14 and set to x
+console.log(b.next(16)) // { value: 30, done: true } pass 16 and set to y
           </code></pre>
         </section>
 
