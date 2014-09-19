@@ -59,6 +59,20 @@ var iter = ham(); // invoke the generator to return an iterable
         </section>
 
         <section>
+          <p>Iteratable interface</p>
+          <pre><code data-trim contenteditable>
+function *ham() {
+  var x = yield 1;
+  console.log(x);
+}
+var iter = ham();
+iter.next();
+iter.next(5);
+iter.throw('oops');
+          </code></pre>
+        </section>
+
+        <section>
           <p><code>for..of</code> loops</p>
           <pre><code data-trim contenteditable>
 for(var i of [4,5,6]) {
@@ -128,7 +142,7 @@ function *a() {
 
 function *b() {
   yield 0;
-  var x = yield *a();
+  var x = yield* a();
   console.log(x);
 }
           </code></pre>
