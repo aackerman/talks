@@ -3,7 +3,7 @@
 Q.spawn = function(gen) {
   var iter = gen();
   var prevresult = iter.next();
-  for(;;) {
+  while(true) {
     if (prevresult.done) { break; }
     var v = prevresult.value;
 
