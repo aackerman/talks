@@ -37,6 +37,8 @@
 * The Dispatcher dispatch messages to each of the registered callbacks, usually registered by Stores
 * Stores respond to dispatched payloads through callbacks by changing data based on information passed in the payload, and emit change events
 
+Use flux concepts when making any change to a client side store. Otherwise state change communication only needs to happen in the context of a parent child component relationship.
+
 ## React Concepts
 
 Virtual DOM implemention for effecient DOM manipulations
@@ -80,7 +82,7 @@ Lists of views should be uniquely keyed to allows for optimal diff performance
 
 shouldComponentUpdate: can be configured manually to allow for higher performance
 
-Props are passed in to be compiled with view once, state inside a view changes over time
+Props are passed in to be compiled with view once, state changes over time
 
 State is internal to the component and its children.
 State ownership, move state up the tree of components when necessary.
