@@ -39,11 +39,36 @@
 
       <div class="slides">
         <section>
-          <h1>react and flux concepts</h1>
+          <h3>react and flux concepts</h3>
         </section>
 
         <section>
+          <p>The most basic react view</p>
+          <pre><code data-trim>
+var App = React.createClass({
+  render: function(){
+    return React.DOM.div(null, "Hello React!");
+  }
+});
+React.renderComponent(App(), document.body);
+          </code></pre>
+        </section>
 
+        <section>
+          <p>Using react with JSX</p>
+          <pre><code data-trim>
+/** @jsx React.DOM */
+var App = React.createClass({
+  render: function(){
+    return <div>"Hello React!"</div>;
+  }
+});
+React.renderComponent(<App/>, document.body);
+          </code></pre>
+          <p>Easier to read, easier to write</p>
+        </section>
+
+        <section>
         </section>
       </div>
 

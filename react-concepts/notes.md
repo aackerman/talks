@@ -43,6 +43,7 @@ Virtual DOM implemention for effecient DOM manipulations
 Initial render, apply operations to the DOM, on update, call render and return a description of what the DOM should look like, compare that to the Virtual DOM in memory and apply operations to get to a consistent state.
 
 declarative JSX vs imperative JS method calls
+http://facebook.github.io/react/jsx-compiler.html
 
 Render React components on the server, truly reusing code on client and server
 
@@ -72,6 +73,8 @@ Based on the Ember router
 Testing React components with Jest
 
 CommonJS modules with React
+
+State vs Props: props are values passed in to be rendered, state will change over time. State should not include computed data, react components, data duplicated from props.
 
 Lists of views should be uniquely keyed to allows for optimal diff performance
 

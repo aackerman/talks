@@ -8,7 +8,7 @@ vendoring
 
 ## Concerns
 
-* Reproducible Builds for multiple environments
+* Reproducible builds for multiple environments
 * Fast
 
 Build tool vs Task runners
