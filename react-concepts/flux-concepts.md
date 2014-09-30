@@ -39,11 +39,10 @@
 
 ## React Concepts
 
-Virtual DOM implemenation for effecient DOM manipulations
+Virtual DOM implemention for effecient DOM manipulations
+Initial render, apply operations to the DOM, on update, call render and return a description of what the DOM should look like, compare that to the Virtual DOM in memory and apply operations to get to a consistent state.
 
 declarative JSX vs imperative JS method calls
-
-It is important to know in which component to handle state. If there is a question, move state up the chain.
 
 Render React components on the server, truly reusing code on client and server
 
@@ -81,6 +80,13 @@ shouldComponentUpdate: can be configured manually to allow for higher performanc
 Props are passed in to be compiled with view once, state inside a view changes over time
 
 State is internal to the component and its children.
+State ownership, move state up the tree of components when necessary.
+
+Concept of supervisor trees - golang, erlang component UIs, http://www.jerf.org/iri/post/2930
+
+Tree of Components, highest level is essentially a supervisor ViewController
+
+Working with other UI libs that need to update the DOM, https://gist.github.com/rpflorence/7cdaea0af8e334413502
 
 RESTful UI
 
