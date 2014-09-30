@@ -39,7 +39,30 @@
 
 ## React Concepts
 
+Virtual DOM implemenation for effecient DOM manipulations
+
+declarative JSX vs imperative JS method calls
+
 It is important to know in which component to handle state. If there is a question, move state up the chain.
+
+Render React components on the server, truly reusing code on client and server
+
+React with Rails
+https://github.com/reactjs/react-rails
+
+npm i -g react-tools # offers the jsx cli tools
+
+Immutable JS, useful immutable object operations
+https://github.com/facebook/immutable-js
+
+React Addons
+
+Testing React components with Jest
+
+
+Lists of views should be uniquely keyed to allows for optimal diff performance
+
+shouldComponentUpdate: can be configured manually to allow for higher performance
 
 Props are passed in to be compiled with view once, state inside a view changes over time
 
