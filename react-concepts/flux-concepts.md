@@ -55,10 +55,24 @@ npm i -g react-tools # offers the jsx cli tools
 Immutable JS, useful immutable object operations
 https://github.com/facebook/immutable-js
 
+Accessing the DOM with getDomNode()
+
+Prop validation with { propTypes: }
+
 React Addons
+* Animations
+* Two-way binding
+* Class-name helpers
+* React testing utilities
+* Immutability helpers
+
+React-router -- npm i react-router
+https://github.com/rackt/react-router
+Based on the Ember router
 
 Testing React components with Jest
 
+CommonJS modules with React
 
 Lists of views should be uniquely keyed to allows for optimal diff performance
 
