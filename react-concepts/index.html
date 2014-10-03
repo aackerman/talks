@@ -50,7 +50,6 @@ var App = React.createClass({
     return React.DOM.div(null, "Hello React!");
   }
 });
-React.renderComponent(App(), document.body);
           </code></pre>
         </section>
 
@@ -63,18 +62,54 @@ var App = React.createClass({
     return &lt;div&gt;"Hello React!"&lt;/div&gt;;
   }
 });
-React.renderComponent(&lt;App /&gt;, document.body);
           </code></pre>
           <p>Easier to read, easier to write</p>
         </section>
 
         <section>
-          <h3>flux</h3>
-          <img src="img/flux-diagram.png">
+          <p>Rendering components to the DOM</p>
+          <pre><code data-trim>
+/** @jsx React.DOM */
+var App = React.createClass({
+  render: function(){
+    return &lt;div&gt;"Hello React!"&lt;/div&gt;;
+  }
+});
+React.renderComponent(&lt;App /&gt;, document.body);
+          </code></pre>
         </section>
 
         <section>
+          <p>Value synchronization</p>
+          <ul>
+            <li>Angular: dirty checking</li>
+            <li>Ember: KVO</li>
+            <li>React: Virtual DOM</li>
+          </ul>
+        </section>
 
+        <section>
+          <p>Passing props</p>
+
+        </section>
+
+        <section>
+          <p>Setting state</p>
+          <pre><code data-trim>
+var Clicker = React.createClass({
+  getInitialState: function(){ return { clicks: 0 } },
+  _onClick: function () { this.setState({ clicks: this.state.clicks + 1 }); }
+  render: function(){
+    return (
+      <div>
+        <span>{this.state.clicks}</span>
+        <button onClick={this._onClick}>Click</button>
+      </div>
+    )
+  }
+});
+React.renderComponent(<Clicker/>, document.body);
+          </code></pre>
         </section>
       </div>
 
