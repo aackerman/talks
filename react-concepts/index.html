@@ -39,11 +39,26 @@
 
       <div class="slides">
         <section>
-          <h3>react and flux concepts</h3>
+          <h3>react concepts</h3>
+
+          <aside class="notes">
+            There are a few points to cover, what is react, what does it do well. What are the features it handles. How does it steer you in the right direction. How does it offer escape valves. And how does it interact with surrounding code that is not built with React.
+          </aside>
         </section>
 
         <section>
-          <p>The most basic react view</p>
+          <p>What is React about?</p>
+          <ul>
+            <li>Views</li>
+            <li>High performance Virtual DOM implementation</li>
+            <li>One-way data flow</li>
+            <li>Small API surface</li>
+            <li>Encapsulation, Reuse, Separation</li>
+          </ul>
+        </section>
+
+        <section>
+          <p>basic react view</p>
           <pre><code data-trim>
 var App = React.createClass({
   render: function(){
@@ -51,10 +66,15 @@ var App = React.createClass({
   }
 });
           </code></pre>
+
+          <aside class="notes">
+            This is a basic React view, it only requires a render method to function properly. The React.DOM.div call is a factory method for a ReactElement.
+          </aside>
         </section>
 
         <section>
-          <p>Using react with JSX</p>
+          <p><code>/** @jsx React.DOM */</code></p>
+          <br>
           <pre><code data-trim>
 /** @jsx React.DOM */
 var App = React.createClass({
@@ -63,6 +83,7 @@ var App = React.createClass({
   }
 });
           </code></pre>
+          <br>
           <p>Easier to read, easier to write</p>
         </section>
 
@@ -80,30 +101,30 @@ React.renderComponent(&lt;App /&gt;, document.body);
         </section>
 
         <section>
-          <p>Value synchronization</p>
+          <p>Value synchronization across frameworks</p>
           <ul>
             <li>Angular: dirty checking</li>
             <li>Ember: KVO</li>
             <li>React: Virtual DOM</li>
+            <li>Backbone: You're on your own</li>
           </ul>
+
+          <aside class="notes">
+            Each framework uses it's own implementation for value synchronization. But React's Virtual DOM diff implementation is probably the best. The Ember guys have talked about how they take the best ideas, so at some point they may switch to a Virtual DOM implementation.
+          </aside>
         </section>
 
         <section>
-          <p>Component Lifecycle hooks</p>
-          <ul>
-            <li>componentWillMount</li>
-            <li>componentWillUnmount</li>
-            <li>getInitialState</li>
-            <li>getDefaultProps</li>
-          </ul>
-        </section>
+          <p>The Virtual DOM</p>
 
-        <section>
-          <p>Passing props</p>
-          <pre><code data-trim>
-var Sidebar = React.createClass({ ... });
-var App = React.createClass({ ... });
-          </code></pre>
+          <aside class="notes">
+            <ul>
+              <li>Code triggers a diff</li>
+              <li>Diff current in-memory virtual DOM vs. upcoming</li>
+              <li>Plan a series of operations to update the DOM</li>
+              <li>Execute the plan</li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -112,36 +133,37 @@ var App = React.createClass({ ... });
 var Clicker = React.createClass({
   getInitialState: function(){ return { clicks: 0 } },
   _onClick: function () { this.setState({ clicks: this.state.clicks + 1 }); }
-  render: function(){
+  render: function() {
     return (
-      <div>
-        <span>{this.state.clicks}</span>
-        <button onClick={this._onClick}>Click</button>
-      </div>
+      &lt;div&gt;
+        &lt;span&gt;{this.state.clicks}&lt;/span&gt;
+        &lt;button onClick={this._onClick}&gt;Click&lt;/button&gt;
+      &lt;/div&gt;
     )
   }
 });
-React.renderComponent(<Clicker/>, document.body);
+React.renderComponent(&lt;Clicker/&gt;, document.body);
           </code></pre>
+
         </section>
 
         <section>
           <p>react-router</p>
           <pre><code data-trim>
 React.renderComponent((
-  <Routes location="history">
-    <Route path="/" handler={App}>
-      <DefaultRoute handler={Home} />
-      <Route name="about" handler={About} />
-      <Route name="users" handler={Users}>
-        <Route name="recent-users" path="recent" handler={RecentUsers} />
-        <Route name="user" path="/user/:userId" handler={User} />
-        <NotFoundRoute handler={UserRouteNotFound}/>
-      </Route>
-    </Route>
-    <NotFoundRoute handler={NotFound}/>
-    <Redirect path="company" to="about" />
-  </Routes>
+  &lt;Routes location="history"&gt;
+    &lt;Route path="/" handler={App}&gt;
+      &lt;DefaultRoute handler={Home} /&gt;
+      &lt;Route name="about" handler={About} /&gt;
+      &lt;Route name="users" handler={Users}&gt;
+        &lt;Route name="recent-users" path="recent" handler={RecentUsers} /&gt;
+        &lt;Route name="user" path="/user/:userId" handler={User} /&gt;
+        &lt;NotFoundRoute handler={UserRouteNotFound}/&gt;
+      &lt;/Route&gt;
+    &lt;/Route&gt;
+    &lt;NotFoundRoute handler={NotFound}/&gt;
+    &lt;Redirect path="company" to="about" /&gt;
+  &lt;/Routes&gt;
 ), document.body);
           </code></pre>
         </section>
@@ -149,8 +171,11 @@ React.renderComponent((
         <section>
           <p>Server-side rendering</p>
           <pre><code data-trim>
-            React.renderToString(<App />)
+            React.renderComponentToString(&lt;App /&gt;)
           </code></pre>
+          <blockquote>
+            holy grail of server-side render + dynamic client app in one code base with real URLs
+          </blockquote>
         </section>
 
         <section>
