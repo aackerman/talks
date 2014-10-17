@@ -68,7 +68,7 @@ var App = React.createClass({
           </code></pre>
 
           <aside class="notes">
-            This is a basic React view, it only requires a render method to function properly. The React.DOM.div call is a factory method for a ReactElement. A ReactElement is a virtual representation of a DOM element used for diffing against the DOM the browser has rendered to the page.
+            This is a basic React view, it only requires a render method to function properly. The React.DOM.div call is a factory method for a ReactElement. A ReactElement is a virtual representation of a DOM element used for diffing against the DOM the browser has rendered to the page. It's important to understand render is returns a virtual representation of what we want to the DOM to look like, there is no html generation from these methods.
           </aside>
         </section>
 
@@ -87,7 +87,11 @@ var App = React.createClass({
           <p>Easier to read, easier to write</p>
 
           <aside class="notes">
-            I'm sure some people twist up their stomach having what looks like markup in their JavaScript, but don't think twice about Javascript in their Angular templates. Having the markup and logic in the same place allows you to have a clearer understanding of an entire component, nothing outside of the component should affect the internals. A note about class vs className, className must be used because `class` is a reserved word in JS.
+            JSX is a specification from Facebook for XML-like syntax in JavaScript. Not a proposal to have included in the language proper but for transpilers.
+
+            I'm sure some people twist up their stomach having what looks like markup in their JavaScript, but don't think twice about Javascript in their Angular templates. Having the markup and logic in the same place allows you to have a clearer understanding of an entire component, nothing outside of the component should affect the internals.
+
+            A note about class vs className, className must be used because `class` is a reserved word in JS.
           </aside>
         </section>
 
@@ -95,17 +99,16 @@ var App = React.createClass({
           <p>Rendering components to the DOM</p>
           <pre><code data-trim>
 /** @jsx React.DOM */
-var App = React.createClass({
-  render: function(){
-    return &lt;div&gt;"Hello React!"&lt;/div&gt;;
-  }
-});
-React.renderComponent(&lt;App /&gt;, document.body); // v0.11
-React.render(&lt;App /&gt;, document.body); // v0.12
+React.renderComponent(
+  <h1>Hello, world!</h1>,
+  document.getElementById('example')
+);
           </code></pre>
 
+          <p><a href="http://jsbin.com/ripum/edit?html,js,output">JSbin example</a></p>
+
           <aside class="notes">
-            The main entry method for React writing a parent component to an element.
+            The main entry method for React writing a parent component to an element. React accepts a class or representation of the DOM, and an element to append to.
           </aside>
         </section>
 
