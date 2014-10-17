@@ -245,6 +245,15 @@ React.renderComponent((
         </section>
 
         <section>
+          <p>flux quick overview</p>
+          <img src="img/flux-diagram.png">
+
+          <aside class="notes">
+            React comes into play here with views and interaction. The rest of flux works around the concepts of using ActionCreators, a Dispatcher, and Stores. Each of these objects talks to another on either side of the diagram to work with one way dataflow. Each type of object with it's own concerns, ActionCreators consumer user interactions and communicate with web apis, send an action along with data to a dispatcher, the stores pre-register callbacks with the dispatcher to be notified of actions, and views pre-register change callbacks with stores to know when the store changes, and query the store for data synchronously.
+          </aside>
+        </section>
+
+        <section>
           <p>Links</p>
           <ul>
             <li><a href="http://facebook.github.io/react/blog/">React blog</a></li>
