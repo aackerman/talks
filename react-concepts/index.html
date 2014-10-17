@@ -68,7 +68,7 @@ var App = React.createClass({
           </code></pre>
 
           <aside class="notes">
-            This is a basic React view, it only requires a render method to function properly. The React.DOM.div call is a factory method for a ReactElement.
+            This is a basic React view, it only requires a render method to function properly. The React.DOM.div call is a factory method for a ReactElement. A ReactElement is a virtual representation of a DOM element used for diffing against the DOM the browser has rendered to the page.
           </aside>
         </section>
 
@@ -79,12 +79,16 @@ var App = React.createClass({
 /** @jsx React.DOM */
 var App = React.createClass({
   render: function(){
-    return &lt;div&gt;"Hello React!"&lt;/div&gt;;
+    return &lt;div className="app"&gt;"Hello React!"&lt;/div&gt;;
   }
 });
           </code></pre>
           <br>
           <p>Easier to read, easier to write</p>
+
+          <aside class="notes">
+            I'm sure some people twist up their stomach having what looks like markup in their JavaScript, but don't think twice about Javascript in their Angular templates. Having the markup and logic in the same place allows you to have a clearer understanding of an entire component, nothing outside of the component should affect the internals. A note about class vs className, className must be used because `class` is a reserved word in JS.
+          </aside>
         </section>
 
         <section>
@@ -96,17 +100,22 @@ var App = React.createClass({
     return &lt;div&gt;"Hello React!"&lt;/div&gt;;
   }
 });
-React.renderComponent(&lt;App /&gt;, document.body);
+React.renderComponent(&lt;App /&gt;, document.body); // v0.11
+React.render(&lt;App /&gt;, document.body); // v0.12
           </code></pre>
+
+          <aside class="notes">
+            The main entry method for React writing a parent component to an element.
+          </aside>
         </section>
 
         <section>
           <p>Value synchronization across frameworks</p>
           <ul>
-            <li>Angular: dirty checking</li>
-            <li>Ember: KVO</li>
-            <li>React: Virtual DOM</li>
-            <li>Backbone: You're on your own</li>
+            <li class="fragment">Angular: dirty checking</li>
+            <li class="fragment">Ember: KVO</li>
+            <li class="fragment">React: Virtual DOM</li>
+            <li class="fragment">Backbone: You're on your own</li>
           </ul>
 
           <aside class="notes">
@@ -132,19 +141,24 @@ React.renderComponent(&lt;App /&gt;, document.body);
           <pre><code data-trim>
 var Clicker = React.createClass({
   getInitialState: function(){ return { clicks: 0 } },
-  _onClick: function () { this.setState({ clicks: this.state.clicks + 1 }); }
+  _onClick: function () { this.setState({ clicks: this.state.clicks + 1 }); },
   render: function() {
     return (
       &lt;div&gt;
-        &lt;span&gt;{this.state.clicks}&lt;/span&gt;
-        &lt;button onClick={this._onClick}&gt;Click&lt;/button&gt;
+        &lt;div&gt;{this.state.clicks}&lt;/div&gt;
+        &lt;button onClick={this._onClick}&gt;Increment&lt;/button&gt;
       &lt;/div&gt;
     )
   }
 });
-React.renderComponent(&lt;Clicker/&gt;, document.body);
+React.renderComponent(&lt;Clicker /&gt;, document.getElementById('example'));
           </code></pre>
 
+          <p><a href="http://jsbin.com/ganezi/3/edit">JS Bin Example</a></p>
+
+          <aside class="notes">
+            This is a simple component, it has an initial state of clicks, and when the button is clicked we call `setState` to update the number of clicks and React handles diffing and updating the DOM.
+          </aside>
         </section>
 
         <section>
