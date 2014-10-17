@@ -133,6 +133,7 @@ React.render(&lt;App /&gt;, document.body); // v0.12
               <li>Plan a series of operations to update the DOM</li>
               <li>Execute the plan</li>
             </ul>
+            <p>This means React can be completely surgical about it's updates, whether it has to update the text of a single text node or it must replace one component with another. This allows developers to think about development in a way that assumes everything has been completely re-rendered as if the page was reloaded and server-side rendering was in place. The implementation fixes several issues with re-rendering and losing focus of form elements and highlighted text.</p>
           </aside>
         </section>
 
@@ -180,21 +181,31 @@ React.renderComponent((
   &lt;/Routes&gt;
 ), document.body);
           </code></pre>
+
+          <aside class="notes">
+            React-router is a pretty amazing project. A react spin on the router used in ember with a very similar API. It allows for fast prototyping of multiple pages and handles updating the URL, query parameters, nested views, transitions, active route links, dynamic routing segments. A ton of features as a separate library outside react that can operate at it's own pace.
+          </aside>
         </section>
 
         <section>
           <p>Server-side rendering</p>
-          <pre><code data-trim>
+          <br>
+          <p><code data-trim>
             React.renderComponentToString(&lt;App /&gt;)
-          </code></pre>
+          </code></p>
+          <br>
           <blockquote>
             holy grail of server-side render + dynamic client app in one code base with real URLs
           </blockquote>
+          <p>Referring to React-router plus React server-side rendering</p>
+
+          <aside class="notes">
+            Rendering on the client and the server, completely cached server payload that syncs to the client. The load time when the files are cached is simply the RTT to the server and back. Lightning fast, works well with SEO, zero flash due to bootstrapping views on the client side. It's literally the dream of untold numbers of web developers.
+          </aside>
         </section>
 
         <section>
-          <p>shouldComponenetUpdate</p>
-          <p>For optimizing logic for when a component should update</p>
+          <p><a href="https://gist.github.com/rpflorence/7cdaea0af8e334413502">Wrapping jquery widgets in React components</a></p>
         </section>
       </div>
 
