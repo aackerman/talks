@@ -7,6 +7,7 @@ Slides and examples for talks I have given
 * [ES6 Features](http://aackerman.github.io/talks/ES6-features)
 * [Sharing Front-end Assets and Modules](http://aackerman.github.io/talks/sharing-front-end-assets-and-modules)
 * [ES6 Generators](http://aackerman.github.io/talks/ES6-generators)
+* [React concepts](http://aackerman.github.io/talks/react-concepts)
 
 ## Ruby
 
