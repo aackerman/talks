@@ -42,6 +42,41 @@
           <h3>flux concepts</h3>
           <img src="img/flux-diagram.png">
         </section>
+
+        <section>
+          <p>Concepts</p>
+          <ul>
+            <li>Views</li>
+            <li>ActionCreators</li>
+            <li>Dispatcher</li>
+            <li>Stores</li>
+          </ul>
+        </section>
+
+        <section>
+          <p>The data-flow story</p>
+          <ol>
+            <li>
+              App initialization:
+              <ul>
+                <li>init dispatcher and stores</li>
+                <li>get data</li>
+                <li>render views</li>
+                <li>views register callbacks to stores</li>
+                <li>stores register callbacks to dispatcher</li>
+              </ul>
+            <li>User interaction: view calls ActionCreator with an action</li>
+            <li>ActionCreator: calls Dispatcher with API data</li>
+            <li>Dispatcher: send messages to all listening Stores</li>
+            <li>Stores: get messages, change data, emit change event</li>
+            <li>Views: react to Store changes, query Store, re-render</li>
+            <li>goto 2</li>
+          </ol>
+        </section>
+
+        <section>
+          <p>Flux example chat deep-dive</p>
+        </section>
       </div>
 
     </div>

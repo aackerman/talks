@@ -38,10 +38,3 @@
 * Stores respond to dispatched payloads through callbacks by changing data based on information passed in the payload, and emit change events
 
 Use flux concepts when making any change to a client side store. Otherwise state change communication only needs to happen in the context of a parent child component relationship.
-
-React Addons
-* Animations
-* Two-way binding
-* Class-name helpers
-* React testing utilities
-* Immutability helpers
