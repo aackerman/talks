@@ -48,9 +48,14 @@
           <ul>
             <li>Views</li>
             <li>ActionCreators</li>
+            <li>Actions</li>
             <li>Dispatcher</li>
             <li>Stores</li>
           </ul>
+
+          <aside class="notes">
+            The need for a dispatcher comes from the interdependency between multiple stores. The dispatcher handles waiting for another store to complete it's callback to know that the original store can go ahead and complete it's own work.
+          </aside>
         </section>
 
         <section>
@@ -69,13 +74,23 @@
             <li>ActionCreator: calls Dispatcher with API data</li>
             <li>Dispatcher: send messages to all listening Stores</li>
             <li>Stores: get messages, change data, emit change event</li>
-            <li>Views: react to Store changes, query Store, re-render</li>
+            <li>Views: respond to Store changes, query Store, re-render</li>
             <li>goto 2</li>
           </ol>
         </section>
 
         <section>
           <p>Flux example chat deep-dive</p>
+        </section>
+
+        <section>
+          <p>Links</p>
+          <ul>
+            <li><a href="http://facebook.github.io/flux/docs/overview.html#content">Flux docs</a></li>
+            <li><a href="http://facebook.github.io/flux/docs/dispatcher.html#content">Dispatcher docs</a></li>
+            <li><a href="https://github.com/facebook/flux">Flux repo</a></li>
+            <li><a href="http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html">Actions and the Dispatcher</a></li>
+          </ul>
         </section>
       </div>
 
