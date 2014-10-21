@@ -92,6 +92,8 @@ var App = React.createClass({
             I'm sure some people twist up their stomach having what looks like markup in their JavaScript, but don't think twice about Javascript in their Angular templates. Having the markup and logic in the same place allows you to have a clearer understanding of an entire component, nothing outside of the component should affect the internals.
 
             A note about class vs className, className must be used because `class` is a reserved word in JS.
+
+            The JSX pragma is going away in 0.12 or 0.13 release.
           </aside>
         </section>
 
@@ -186,7 +188,7 @@ React.renderComponent((
           </code></pre>
 
           <aside class="notes">
-            React-router is a pretty amazing project. A react spin on the router used in ember with a very similar API. It allows for fast prototyping of multiple pages and handles updating the URL, query parameters, nested views, transitions, active route links, dynamic routing segments. A ton of features as a separate library outside react that can operate at it's own pace.
+            React-router is a pretty amazing project. A react spin on the router used in ember with a very similar API. It allows for fast prototyping of multiple pages and handles updating the URL, query parameters, nested views, transitions, active route links, dynamic routing segments. A ton of features as a separate library outside react that can operate at it's own pace. What you can see here are react components rendering specific children based on the URL. If the URL matches a specific path it will invoke and render the handler component.
           </aside>
         </section>
 
@@ -205,6 +207,11 @@ React.renderComponent((
           <aside class="notes">
             Rendering on the client and the server, completely cached server payload that syncs to the client. The load time when the files are cached is simply the RTT to the server and back. Lightning fast, works well with SEO, zero flash due to bootstrapping views on the client side. It's literally the dream of untold numbers of web developers.
           </aside>
+        </section>
+
+        <section>
+          <p>What server-side rendering really looks like</p>
+          <p><img src="//i.ralph.io/7gxrw0e5.png"></p>
         </section>
 
         <section>
