@@ -14,6 +14,7 @@ vendoring
 Build tool vs Task runners
 External library inclusion
 Able to run locally in dev or production mode
+Work with all types of assets, CSS, JS, Images, SVG, Templates
 Cache invalidation, filename digesting, versioning
 Dynamic template compilation for dev vs. production build
 Dynamic filename lookup during build to handle production digest filenames
@@ -27,8 +28,9 @@ JS and CSS Source Maps
 Build Packs for initial download and later download of functionality
 Uploading to CDN
 Running tests
-Integrating CJS, AMD, and Globals libraries
+Integrating ES6, CJS, AMD, and Globals libraries
 Declarative (Grunt) vs Imperative (Gulp, Brocolli)
+Ember-cli has a convention for folder structure
 
 Bespoke development
   * No convention for folder structure
