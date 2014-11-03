@@ -33,6 +33,12 @@ Integrating ES6, CJS, AMD, and Globals libraries
 Declarative (Grunt) vs Imperative (Gulp, Brocolli)
 Ember-cli has a convention for folder structure
 
+Advanced Techniques
+  * Sending code as text to prevent parsing and execution time
+  * Resolving dependencies asynchronously at runtime while avoiding n+1 dependency requests
+    * https://github.com/google/module-server
+  * Send styles, fonts, and javascript in a single file and splitting it at runtime
+
 Bespoke development
   * No convention for folder structure
   * Community distaste for frameworks
