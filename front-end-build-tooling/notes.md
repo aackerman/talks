@@ -16,6 +16,7 @@ External library inclusion
 Able to run locally in dev or production mode
 Work with all types of assets, CSS, JS, Images, SVG, Templates
 Cache invalidation, filename digesting, versioning
+File caching headers on server-side
 Dynamic template compilation for dev vs. production build
 Dynamic filename lookup during build to handle production digest filenames
 Dynamic rebuild on file tree change (saving, deleting, moving, switching branches)
@@ -38,6 +39,12 @@ Advanced Techniques
   * Resolving dependencies asynchronously at runtime while avoiding n+1 dependency requests
     * https://github.com/google/module-server
   * Send styles, fonts, and javascript in a single file and splitting it at runtime
+  * Statically gzipped assets
+  * Stripping unused CSS rules
+  * Identify Colors that the human eye cannot differentiate (https://github.com/SlexAxton/css-colorguard)
+  * Image compression byte shaving (removing uncessary bytes)
+  * webm and webp vs jpeg, gif, png
+  * Inline data URIs when it makes sense
 
 Bespoke development
   * No convention for folder structure
