@@ -1,3 +1,5 @@
+## Front end build tooling
+
 Rails asset pipeline
 npm
 bower
@@ -6,33 +8,35 @@ gulp
 broccoli
 vendoring
 
-## Concerns
+## High Level Concerns
+  * Reproducible builds for multiple environments
+  * Fast build time
+  * Provide a good end-user experience
 
-* Reproducible builds for multiple environments
-* Fast
-
-Build tool vs Task runners
-External library inclusion
-Able to run locally in dev or production mode
-Work with all types of assets, CSS, JS, Images, SVG, Templates
-Cache invalidation, filename digesting, versioning
-File caching headers on server-side
-Dynamic template compilation for dev vs. production build
-Dynamic filename lookup during build to handle production digest filenames
-Dynamic rebuild on file tree change (saving, deleting, moving, switching branches)
-Automatic browser reload (hot reload)
-Server response cycle is part of asset compilation, assets are blocked on recompilation (webpack dev server)
-Fast compile time
-Concatenation Order
-Minification/Obfuscation, UglifyJS, Google Closure Compiler
-JS and CSS Source Maps
-Build Packs for initial download and later download of functionality
-Uploading to CDN
-Running tests in CI
-A/B testing
-Integrating ES6, CJS, AMD, and Globals libraries
-Declarative (Grunt) vs Imperative (Gulp, Brocolli)
-Ember-cli has a convention for folder structure
+## Low level concerns
+  * Build tool vs Task runners
+  * External library inclusion
+  * Able to run locally in dev or production mode
+  * Work with all types of assets, CSS, JS, Images, SVG, Templates, i18n
+  * Cache invalidation, filename digesting, versioning
+  * File caching headers on server-side
+  * Dynamic template compilation for dev vs. production build
+  * Dynamic filename lookup during build to handle production digest filenames
+  * Dynamic rebuild on file tree change (saving, deleting, moving, switching branches)
+  * Automatic browser reload (hot reload)
+  * Server response cycle is part of asset compilation, assets are blocked on recompilation (webpack dev server)
+  * Fast compile time
+  * Concatenation drder, dependency management
+  * Minification/Obfuscation, UglifyJS, Google Closure Compiler
+  * JS and CSS Source Maps
+  * Build packs for initial download and deferred download of functionality
+  * Uploading to CDN, edge network speed
+  * Running tests in CI
+  * Dynamic server-side, resolution of dependencies, and builds of modules a la Netflix
+  * A/B testing
+  * Integrating ES6, CJS, AMD, and Globals libraries
+  * Declarative (Grunt) vs Imperative (Gulp, Brocolli)
+  * Ember-cli has a convention for folder structure, and working with Ember apps
 
 Advanced Techniques
   * Sending code as text to prevent parsing and execution time
