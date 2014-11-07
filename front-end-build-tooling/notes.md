@@ -64,11 +64,11 @@
   * npm
   * bower
   * grunt, gulp, broccoli, jake, make, brunch
-  * vendoring
   * git dependencies/submodules
   * firefox, chrome, opera, safari, ie devtools
   * packet sniffer
   * python -m SimpleHTTPServer
-  * documentation
+  * documentation, mdn, spec
   * jsperf
   * jsbin, jsfiddle, codepen
+  * JShint JSlint
