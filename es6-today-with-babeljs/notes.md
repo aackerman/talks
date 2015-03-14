@@ -57,3 +57,9 @@ JavaScript is now a compile-to-javascript language
 * grunt
   * grunt-babel
 
+## TODO
+
+* Create examples with each tooling integration
+* Create slides for different parts
+* Determine an example application to show
+
