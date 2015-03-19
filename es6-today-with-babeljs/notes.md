@@ -35,6 +35,14 @@ JavaScript is now a compile-to-javascript language
   * Closure Compiler
   * es6-shim
 
+## Tools
+
+* Transpiler - Babel
+* Task runner - Grunt/Gulp
+* Test runner - Karma/Mocha
+* Module compiler - Webpack/Browserify
+* Linting - eslint/jshint
+
 ## Tooling integration with Babel
 
 * Webpack
@@ -63,3 +71,9 @@ JavaScript is now a compile-to-javascript language
 * Create slides for different parts
 * Determine an example application to show
 
+## Examples to Create
+
+* Empty webpack build
+* Empty browserify build
+* Babel, Gulp, Karma/Jasmine, Webpack, Eslint, 3 files minimum with tests
+* Babel, Grunt, Mocha, Browserify, jshint, 3 files minimum with tests
