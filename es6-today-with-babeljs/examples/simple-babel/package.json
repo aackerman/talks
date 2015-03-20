@@ -1,0 +1,6 @@
+{
+  "main": "index.js",
+  "devDependencies": {
+    "babel": "^4.7.16"
+  }
+}
