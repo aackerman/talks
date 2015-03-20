@@ -1,0 +1,8 @@
+{
+  "main": "index.js",
+  "devDependencies": {
+    "babel": "^4.7.16",
+    "browserify": "^9.0.3",
+    "grunt": "^0.4.5"
+  }
+}
