@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>React Native</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+        <section>
+          <h3>react concepts</h3>
+
+          <aside class="notes">
+            There are a few points to cover, what is react, what does it do well. What are the features it handles. How does it steer you in the right direction. How does it offer escape valves. And how does it interact with surrounding code that is not built with React.
+          </aside>
+        </section>
+
+        <section>
+          <p>What is React about?</p>
+          <ul>
+            <li>Views</li>
+            <li>High performance Virtual DOM implementation</li>
+            <li>One-way data flow</li>
+            <li>Small API surface</li>
+            <li>Encapsulation, Reuse, Separation</li>
+          </ul>
+        </section>
+
+        <section>
+          <p>basic react view</p>
+          <pre><code data-trim>
+var App = React.createClass({
+  render: function(){
+    return React.DOM.div(null, "Hello React!");
+  }
+});
+          </code></pre>
+
+          <aside class="notes">
+            This is a basic React view, it only requires a render method to function properly. The React.DOM.div call is a factory method for a ReactElement. A ReactElement is a virtual representation of a DOM element used for diffing against the DOM the browser has rendered to the page. It's important to understand render is returns a virtual representation of what we want to the DOM to look like, there is no html generation from these methods.
+          </aside>
+        </section>
+
+        <section>
+          <p><code>/** @jsx React.DOM */</code></p>
+          <br>
+          <pre><code data-trim>
+/** @jsx React.DOM */
+var App = React.createClass({
+  render: function(){
+    return &lt;div className="app"&gt;"Hello React!"&lt;/div&gt;;
+  }
+});
+          </code></pre>
+          <br>
+          <p>Easier to read, easier to write</p>
+
+          <aside class="notes">
+            JSX is a specification from Facebook for XML-like syntax in JavaScript. Not a proposal to have included in the language proper but for transpilers.
+
+            I'm sure some people twist up their stomach having what looks like markup in their JavaScript, but don't think twice about Javascript in their Angular templates. Having the markup and logic in the same place allows you to have a clearer understanding of an entire component, nothing outside of the component should affect the internals.
+
+            A note about class vs className, className must be used because `class` is a reserved word in JS.
+
+            The JSX pragma is going away in 0.12 or 0.13 release.
+          </aside>
+        </section>
+
+        <section>
+          <p>Rendering components to the DOM</p>
+          <pre><code data-trim>
+/** @jsx React.DOM */
+React.renderComponent(
+  <h1>Hello, world!</h1>,
+  document.getElementById('example')
+);
+          </code></pre>
+
+          <p><a href="http://jsbin.com/ripum/edit?html,js,output">JSbin example</a></p>
+
+          <aside class="notes">
+            The main entry method for React writing a parent component to an element. React accepts a class or representation of the DOM, and an element to append to.
+          </aside>
+        </section>
+
+        <section>
+          <p>Value synchronization across frameworks</p>
+          <ul>
+            <li class="fragment">Angular: dirty checking</li>
+            <li class="fragment">Ember: KVO</li>
+            <li class="fragment">React: Virtual DOM</li>
+            <li class="fragment">Backbone: You're on your own</li>
+          </ul>
+
+          <aside class="notes">
+            Each framework uses it's own implementation for value synchronization. But React's Virtual DOM diff implementation is probably the best. The Ember guys have talked about how they take the best ideas, so at some point they may switch to a Virtual DOM implementation.
+          </aside>
+        </section>
+
+        <section>
+          <p>The Virtual DOM</p>
+
+          <aside class="notes">
+            <ul>
+              <li>Code triggers a diff</li>
+              <li>Diff current in-memory virtual DOM vs. upcoming</li>
+              <li>Plan a series of operations to update the DOM</li>
+              <li>Execute the plan</li>
+            </ul>
+            <p>This means React can be completely surgical about it's updates, whether it has to update the text of a single text node or it must replace one component with another. This allows developers to think about development in a way that assumes everything has been completely re-rendered as if the page was reloaded and server-side rendering was in place. The implementation fixes several issues with re-rendering and losing focus of form elements and highlighted text.</p>
+          </aside>
+        </section>
+
+        <section>
+          <p>Setting state</p>
+          <pre><code data-trim>
+var Clicker = React.createClass({
+  getInitialState: function(){ return { clicks: 0 } },
+  _onClick: function () { this.setState({ clicks: this.state.clicks + 1 }); },
+  render: function() {
+    return (
+      &lt;div&gt;
+        &lt;div&gt;{this.state.clicks}&lt;/div&gt;
+        &lt;button onClick={this._onClick}&gt;Increment&lt;/button&gt;
+      &lt;/div&gt;
+    )
+  }
+});
+React.renderComponent(&lt;Clicker /&gt;, document.getElementById('example'));
+          </code></pre>
+
+          <p><a href="http://jsbin.com/ganezi/3/edit">JS Bin Example</a></p>
+
+          <aside class="notes">
+            This is a simple component, it has an initial state of clicks, and when the button is clicked we call `setState` to update the number of clicks and React handles diffing and updating the DOM.
+          </aside>
+        </section>
+
+        <section>
+          <p>react-router</p>
+          <pre><code data-trim>
+React.renderComponent((
+  &lt;Routes location="history"&gt;
+    &lt;Route path="/" handler={App}&gt;
+      &lt;DefaultRoute handler={Home} /&gt;
+      &lt;Route name="about" handler={About} /&gt;
+      &lt;Route name="users" handler={Users}&gt;
+        &lt;Route name="recent-users" path="recent" handler={RecentUsers} /&gt;
+        &lt;Route name="user" path="/user/:userId" handler={User} /&gt;
+        &lt;NotFoundRoute handler={UserRouteNotFound}/&gt;
+      &lt;/Route&gt;
+    &lt;/Route&gt;
+    &lt;NotFoundRoute handler={NotFound}/&gt;
+    &lt;Redirect path="company" to="about" /&gt;
+  &lt;/Routes&gt;
+), document.body);
+          </code></pre>
+
+          <aside class="notes">
+            React-router is a pretty amazing project. A react spin on the router used in ember with a very similar API. It allows for fast prototyping of multiple pages and handles updating the URL, query parameters, nested views, transitions, active route links, dynamic routing segments. A ton of features as a separate library outside react that can operate at it's own pace. What you can see here are react components rendering specific children based on the URL. If the URL matches a specific path it will invoke and render the handler component.
+          </aside>
+        </section>
+
+        <section>
+          <p>Server-side rendering</p>
+          <br>
+          <p><code data-trim>
+            React.renderComponentToString(&lt;App /&gt;)
+          </code></p>
+          <br>
+          <blockquote>
+            holy grail of server-side render + dynamic client app in one code base with real URLs
+          </blockquote>
+          <p>Referring to React-router plus React server-side rendering</p>
+
+          <aside class="notes">
+            Rendering on the client and the server, completely cached server payload that syncs to the client. The load time when the files are cached is simply the RTT to the server and back. Lightning fast, works well with SEO, zero flash due to bootstrapping views on the client side. It's literally the dream of untold numbers of web developers.
+          </aside>
+        </section>
+
+        <section>
+          <p>What server-side rendering really looks like</p>
+          <p><img src="//i.ralph.io/7gxrw0e5.png"></p>
+        </section>
+
+        <section>
+          <p><a href="https://gist.github.com/rpflorence/7cdaea0af8e334413502">Wrapping jquery widgets in React components</a></p>
+
+          <aside class="notes">
+            This example shows using a jquery widget dialog inside a react component. The normal render method is simply a stub. It renders a div so the consumer has no interaction with React. The `componentDidMount` is a lifecycle hook for react components where this example calls the jquery dialog and attaches it to the component DOM node.
+          </aside>
+        </section>
+
+        <section>
+          <p>Who uses React</p>
+          <ul>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>Khan Academy</li>
+            <li>Netflix</li>
+            <li>CloudFlare</li>
+            <li>AirBnB</li>
+            <li>Yahoo Mail</li>
+            <li>Atlassian</li>
+            <li>Github (Atom Editor)</li>
+            <li><a href="https://github.com/facebook/react/wiki/Sites-Using-React">... and dozens more</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <p>React is just the view layer, it doesn't give you</p>
+          <br>
+          <ul>
+            <li>routing</li>
+            <li>models</li>
+            <li>computed properties</li>
+            <li>filters</li>
+            <li>ajax</li>
+            <li>controllers</li>
+            <li>stores</li>
+          </ul>
+          <br><br>
+          <p>Facebook recommends a flux architecture</p>
+        </section>
+
+        <section>
+          <p>flux quick overview</p>
+          <img src="img/flux-diagram.png">
+
+          <aside class="notes">
+            React comes into play here with views and interaction. The rest of flux works around the concepts of using ActionCreators, a Dispatcher, and Stores. Each of these objects talks to another on either side of the diagram to work with one way dataflow. Each type of object with it's own concerns, ActionCreators consumer user interactions and communicate with web apis, send an action along with data to a dispatcher, the stores pre-register callbacks with the dispatcher to be notified of actions, and views pre-register change callbacks with stores to know when the store changes, and query the store for data synchronously.
+          </aside>
+        </section>
+
+        <section>
+          <p>Links</p>
+          <ul>
+            <li><a href="http://facebook.github.io/react/blog/">React blog</a></li>
+            <li><a href="http://facebook.github.io/jest/">Jest unit testing</a></li>
+            <li><a href="http://facebook.github.io/jsx/">JSX specification</a></li>
+            <li><a href="http://jlongster.com/Removing-User-Interface-Complexity,-or-Why-React-is-Awesome">... Why React is Awesome</a></li>
+            <li><a href="https://github.com/facebook/react-devtools">react dev-tools</a></li>
+            <li><a href="http://gaearon.github.io/react-hot-loader/">react-hot-loader</a></li>
+            <li><a href="https://github.com/facebook/immutable-js">immutable.js</a></li>
+          </ul>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme || '', // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
