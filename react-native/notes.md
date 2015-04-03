@@ -18,11 +18,7 @@
 * Rendering to native views on Android
 
 ### Discuss the differences in runtime
-* Node
-* Browser
 * JavaScriptCore VM
-* Rhino
-* Nashorn
 
 ### Discuss built in polyfills and build toolchain
 * ES6 Promises
