@@ -11,7 +11,7 @@
 
 * ES6 - ES2015
   * class syntax
-  * Extends and subclassing builtins
+  * extends and subclassing builtins
   * module sytanx
   * fat arrow functions
   * rest/spread
@@ -19,7 +19,7 @@
   * default parameters
   * destructuring
   * generators
-  * Native promises
+  * native promises
 
 * ES6 Feature examples
 
