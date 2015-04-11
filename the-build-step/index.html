@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>ES6 with Babel</title>
+    <title>JavaScript Application Tooling for a Modern Development Experience</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -39,22 +39,43 @@
 
       <div class="slides">
         <section>
-          <h3>The Build Step</h3>
+          <h3>JavaScript Application Tooling for a Modern Development Experience</h3>
+          <p>aka: The Build Step</p>
+        </section>
+
+        <section>
+          <h2>SPA tooling</h2>
+          <ul>
+            <li>html file(s), many unminified plain JS scripts and libs</li>
+            <li>html file(s), one/few concat'd scripts, minified</li>
+            <li>async JS loading with deferred loading</li>
+            <li>file save, then run build, then refresh</li>
+            <li>save, watcher auto full rebuild, refresh</li>
+            <li>save, incremental rebuild, refresh</li>
+            <li>save, incremental rebuild, livereload</li>
+            <li>save, incremental rebuild, hot module replacement</li>
+            <li>ES6, modules, Sass, auto-incremental rebuild</li>
+          </ul>
+          <br><br>
+          <p>All options are perfectly valid if it works for you</p>
         </section>
 
         <section>
           <p>JavaScript is a compile-to-JavaScript language</p>
-        </section>
-
-        <section>
-          <h3>ES6</h3>
+          <ul>
+            <li>ES6</li>
+            <li>CoffeeScript</li>
+            <li>ClojureScript</li>
+            <li>Scala.js</li>
+            <li>... 100 others</li>
+          </ul>
         </section>
 
         <section>
           <h3>Features</h3>
           <ul>
             <li>class syntax</li>
-            <li>Extends and subclassing builtins</li>
+            <li>extends and subclassing builtins</li>
             <li>module sytanx</li>
             <li>fat arrow functions</li>
             <li>rest/spread</li>
@@ -62,8 +83,13 @@
             <li>default parameters</li>
             <li>destructuring</li>
             <li>generators</li>
-            <li>Native promises</li>
+            <li>template strings</li>
+            <li>native promises</li>
           </ul>
+        </section>
+
+        <section>
+          <p>What problems are solved by using new syntax?</p>
         </section>
 
         <section>
@@ -73,11 +99,18 @@
         </section>
 
         <section>
-          <p>Live coding</p>
+          <p>Live examples</p>
         </section>
 
         <section>
           <p>Links</p>
+          <ul>
+            <li><a href="http://aackerman.github.io/talks/the-build-step/#/">This talk</a></li>
+            <li><a href="http://babelio.js">babelio.js</a></li>
+            <li><a href="https://github.com/lukehoban/es6features">ES6 Features</a></li>
+            <li><a href="http://kangax.github.io/compat-table/es6/">ES6 Compat Table</a></li>
+            <li><a href="https://github.com/aackerman/minnebar10">Talk Examples</a></li>
+          </ul>
         </section>
       </div>
 
