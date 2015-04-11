@@ -27,6 +27,8 @@
   * 6to5 - Babel
   * Transform future syntax to syntax we can use today
 
+* ES6 Compat table
+
 * babel cli with npm
 * babel with node
 * babel with grunt
@@ -35,7 +37,6 @@
 * babel with webpack
 * babel with jasmine
 * babel with mocha
-* babel with jshint
 * babel with eslint
 * babel with sourcemaps
 * babel with react/jsx, webpack, jasmine, eslint, sourcemaps, generators
