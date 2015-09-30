@@ -1,12 +1,18 @@
 JavaScript to JavaScript Compilation
 
-## Babel and Compilers Introduction
+## Babel and Compilers Intro
 
 I just saw an interesting tweet last week. Babel is a year old now. This is my second talk including Babel this year. If you're a local, maybe you saw my talk on Babel at Minnebar, it was mostly to discuss why you might want to use Babel and all of the nifty integrations with all of the other build tools. I'm going to discuss some of the same today but I'm also going to discuss some other tools, and some trends that I'm seeing about compiler tools across languages and communities.
 
 If you're hearing about Babel for the first time today or you are unfamiliar with compilers. A compiler program accepts source code and transforms the input into other code. GCC is a C++ compiler, it transforms C++ source into machine code. CoffeeScript is a popular to-JavaScript compiler. CoffeeScript defines it's own syntax and semantics that looks like a mashup of JavaScript and Ruby, it reads this code and transforms that into JavaScript source code that works in a JavaScript runtime. Babel is a compiler as well. It takes JavaScript code and outputs different JavaScript code.
 
 There have been several future syntax JavaScript compilers. Other compilers: esnext, esnow, es6-module-transpiler, traceur-compiler, jstransform. Arguably, Babel is now the de facto standard, with several of the other compilers being deprecated in favor of using Babel.
+
+* esnow - uses Babel
+* esnext - merged with Babel
+* es6-module-transpiler - deprecated in favor of Babel
+* JSTransform - recommends using Babel
+* traceur-compiler - still going strong
 
 I'm far from an expert on compilers, but I want to say a few words. The Babel project uses a parser called Babylon, originally based on the Acorn JavaScript parser.
 
@@ -38,3 +44,14 @@ Babel is a tool for rewriting code. A few other code re-writing tools exist incl
 The React team releases some code rewriting tools as well, to help React consumers including Facebook themselves to update between different version of React. Code rewriting is often a time consuming and error prone process, writing code to update your code
 
 I'm expecting static analysis and code rewriting to be the next big deal in JavaScript.
+
+## Notes
+
+[ ] - Create slides about compilers intro
+[ ] - Create slides to show the current state of future syntax compilers
+[ ] - Create slides about Babel integrations
+[ ] - Create slides showing the input and output of the React codemods
+[ ] - Create slides showing the inputs and outputs of Babel
+[ ] - Create slides to discuss the tweet from the MeteorJS team
+[ ] - Discuss eslint "auto-fixing"
+[ ] - Discuss "auto-imports"
