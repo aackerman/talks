@@ -12,6 +12,7 @@ There have been several future syntax JavaScript compilers. Other compilers: esn
 * esnext - merged with Babel
 * es6-module-transpiler - deprecated in favor of Babel
 * JSTransform - recommends using Babel
+* esdown - very little adoption
 * traceur-compiler - still going strong
 
 I'm far from an expert on compilers, but I want to say a few words. The Babel project uses a parser called Babylon, originally based on the Acorn JavaScript parser.
@@ -33,9 +34,17 @@ I'm far from an expert on compilers, but I want to say a few words. The Babel pr
 
 Rest/spread for arrays and objects, destructuring, classes, generators/yield, classes, module syntax, arrow functions, object literal shorthands, for..of, template strings, let/const, async/await. Easier to understand and more elegant than patterns available in ES5.
 
-https://twitter.com/benjamn/status/646376537713975296
-
 ## Babel default transforms, polyfills, and options
+
+Babel defaults to compiling features that are on the JavaScript standards track based on the stage of the proposal. Stage 2 and higher features that can be compiled to ES5 are enabled by default.
+
+The TC39 categorises proposals into 4 stages:
+
+* Stage 0 - Strawman
+* Stage 1 - Proposal
+* Stage 2 - Draft
+* Stage 3 - Candidate
+* Stage 4 - Finished
 
 ## Code re-writting tools and patterns
 
@@ -53,5 +62,6 @@ I'm expecting static analysis and code rewriting to be the next big deal in Java
 [ ] - Create slides showing the input and output of the React codemods
 [ ] - Create slides showing the inputs and outputs of Babel
 [ ] - Create slides to discuss the tweet from the MeteorJS team
+[ ] - Create slides discussing the major patterns available in Babel
 [ ] - Discuss eslint "auto-fixing"
 [ ] - Discuss "auto-imports"
