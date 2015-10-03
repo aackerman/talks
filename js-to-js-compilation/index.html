@@ -73,9 +73,9 @@
 				<section>
 					<p>I work on JavaScript projects at Code42</p>
 					<aside class="notes">
-						I work on JavaScript projects at Code42. We have several mid-sized JavaScript projects. And our team likes to use a lot of progressive features. We sell to enterprise companies, but most of the projects we ship only need to work on browsers a couple versions back. So we get to learn a lot of new and upcoming features and take advantage of them using compilers and other code transformation tools.
+						I work on JavaScript projects at Code42. We have several mid-sized JavaScript projects. And our team likes to use a lot of progressive features. We sell to a lot of enterprise companies, but most of the projects we ship only need to work on browsers a couple versions back. So we get to learn a lot of new and upcoming features and take advantage of them using compilers and other code transformation tools.
 
-						I work on a project that uses electron, so some of the syntax that available in the latest versions of chrome and node I can use directly without compiling.
+						I work on a project that uses electron, so some of the syntax that available in the latest versions of v8 and Node I can use directly without compiling.
 
 						I'm going to talk about Babel today. If you're hearing about Babel for the first time today, Babel is a JavaScript compiler. If you are unfamiliar with compilers, a compiler program accepts source code and transforms the input into other code.
 					</aside>
@@ -87,7 +87,7 @@
 						class="no-border-img"
 						src="images/gcc.png"/>
 					<aside class="notes">
-						GCC is a C++ compiler, it transforms C++ source into machine code, GCC allows C++ developers to write code that works on your laptop, raspberry pi, android, ios, and all kinds of different machines. This image really shows its age though. JavaScript projects have really stepped up their game when it comes to logos.
+						GCC is a C and C++ compiler, it transforms C++ source into machine code, GCC allows C++ developers to write code that works on your laptop, raspberry pi, android, ios, and all kinds of different machines. This image really shows its age though. JavaScript projects have really stepped up their game when it comes to logos.
 					</aside>
 				</section>
 
@@ -96,7 +96,7 @@
 						class="no-border-img"
 						src="images/coffeescript.svg"/>
 					<aside class="notes">
-						CoffeeScript is a popular to-JavaScript compiler. CoffeeScript defines it's own syntax and semantics that looks like a mashup of JavaScript and Ruby, it reads this code and transforms that into JavaScript source code that works in a JavaScript runtime.
+						CoffeeScript is a popular to-JavaScript compiler. CoffeeScript defines it's own syntax and semantics that looks like a mashup of JavaScript and Ruby, the CoffeeScript compiler reads this code and transforms that into JavaScript source code that works in a JavaScript runtime.
 					</aside>
 				</section>
 
@@ -105,16 +105,16 @@
 						class="no-border-img"
 						src="images/babel.png"/>
 					<aside class="notes">
-						Babel is a compiler as well. It takes JavaScript code and outputs different JavaScript code. Notably accepting ES2015 syntax and outputting ES5 compatible syntax.
+						Babel is a compiler as well. It takes JavaScript code and outputs different JavaScript code. Notably accepting ES6 or ES2015 syntax and outputting ES5 compatible syntax.
 					</aside>
 				</section>
 
 				<section>
 					<img src="images/babel-one-year.png"/>
 					<aside class="notes">
-						I just saw an interesting tweet last week. Babel is a year old now. Babel was originally named 6to5 and the maintainers of the project changed the name to be clearer about the goals of the project.
+						I just saw an interesting tweet last week. Babel is a year old now, I should probably say it's only a year old now. So in terms of software it's still very new. But the shear number of commits, releases, and general community support the project has matured very quickly considering how long it has existed. Babel was originally named 6to5 and the maintainers of the project changed the name to be clearer about the goals of the project.
 
-						This is my second talk including Babel this year. If you're a local, maybe you saw my talk on Babel at Minnebar, it was mostly to discuss why you might want to use Babel and all of the nifty integrations with all of the other build tools. I'm going to discuss some of the same today but I'm also going to discuss some other tools, and some trends that I'm seeing about compiler tools across languages and communities.
+						This is my second talk including Babel this year. If you're a local, maybe you saw my talk on Babel at Minnebar, it was mostly to discuss why you might want to use Babel and all of the integrations with other build tools. I'm going to discuss some of the same today but I'm also going to discuss other tools, and some trends that I'm seeing about compiler tools across languages and communities.
 					</aside>
 				</section>
 
@@ -129,14 +129,18 @@
 						<li>traceur-compiler</li>
 					</ul>
 					<aside class="notes">
-						There have been several future syntax JavaScript compilers. Other compilers: esnext, esnow, es6-module-transpiler, traceur-compiler, jstransform. Arguably, Babel is now the de facto standard, with several of the other compilers being deprecated in favor of using Babel.
+						There have been several future syntax JavaScript compilers. Other compilers: esnext, esnow, es6-module-transpiler, traceur-compiler, jstransform. Arguably, Babel is now the de facto standard, with several of the other compilers being deprecated in favor of using Babel. The traceur-compiler is still going very strong with regular commits, but it hasn't seen nearly the same backing support as the Babel project.
 					</aside>
 				</section>
 
 				<section>
-					<p>ES2015</p>
+					<p>ES6 / ES2015</p>
 					<p>Huge improvement to the quality</p>
 					<p>of life for JavaScript developers</p>
+
+					<aside class="notes">
+						Originally talked about as ES6 the TC39 committee is pushing for a type of year based naming scheme for releases similar to C++11, C++14, C++17. The new syntax, methods, and idioms are a huge quality of life improvement. It allows for more terse and elegant syntax that is easier to understand.
+					</aside>
 				</section>
 
 				<section>
@@ -237,47 +241,6 @@
 				</section>
 
 				<section>
-					<p>Experimental Babel transforms</p>
-					<img src="images/experimental-transforms.png"/>
-				</section>
-
-
-				<section>
-					<p>Babel Integrations</p>
-					<ul>
-						<li>Webpack</li>
-						<li>Node</li>
-						<li>React/JSX/Flow</li>
-						<li>Jasmine</li>
-						<li>Mocha</li>
-						<li>ESlint</li>
-						<li>Grunt</li>
-						<li>Gulp</li>
-						<li>Browserify</li>
-						<li>More...</li>
-					</ul>
-					<aside class="notes">
-						Babel integrates with many popular JavaScript tools.
-
-						My talk over this summer at Minnebar10 discussed integrating all of these tools with Babel.
-					</aside>
-				</section>
-
-				<section>
-					<p>Supporting older browsers</p>
-					<ul>
-						<li>ES6 methods and Symbol polyfills</li>
-						<li>ES5 shim</li>
-						<li>IE10 and below - classes possible with loose mode</li>
-						<li>IE8 and below - modules loose mode, no getters and setters</li>
-					</ul>
-
-					<aside class="notes">
-						Some features require polyfills and shims for older browser and some features have limited functionality in older versions of IE.
-					</aside>
-				</section>
-
-				<section>
 					<section>
 						<p>Babel defaults</p>
 						<p>Stage 2 and above</p>
@@ -296,6 +259,51 @@
 							Proposals for inclusion into JavaScript the languages happens in stages. From zero to four. An idea for a few feature to being implemented across several JavaScript runtime environments. So all of ES2015 would past this stage and already included in the language. A few notable proposals include async functions, and object rest and spread syntax.
 						</aside>
 					</section>
+
+					<section>
+						<p>Experimental Babel transforms</p>
+						<img src="images/experimental-transforms.png"/>
+						<aside class="notes">
+							I said earlier that Babel uses stage two and higher by deafult.
+							Babel allows for a lot of experimental and optional transforms including JSX for React users, flowtype for static typing annotations, using the Bluebird Promise library with generators to use async functions.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<p>Babel Integrations</p>
+					<ul>
+						<li>Webpack</li>
+						<li>Node</li>
+						<li>React/JSX/Flow</li>
+						<li>Jasmine</li>
+						<li>Mocha</li>
+						<li>ESlint</li>
+						<li>Grunt</li>
+						<li>Gulp</li>
+						<li>Browserify</li>
+						<li>More...</li>
+					</ul>
+					<p>See <a href="http://github.com/aackerman/minnebar10">http://github.com/aackerman/minnebar10</a></p>
+					<aside class="notes">
+						Babel integrates with many popular JavaScript tools.
+
+						My talk over this summer at Minnebar10 discussed integrating all of these tools with Babel. You can find code examples of integrating with each of these build tools at the URL on the screen.
+					</aside>
+				</section>
+
+				<section>
+					<p>Supporting older browsers</p>
+					<ul>
+						<li>ES6 methods and Symbol polyfills</li>
+						<li>ES5 shim</li>
+						<li>IE10 and below - classes possible with loose mode</li>
+						<li>IE8 and below - modules loose mode, no getters and setters</li>
+					</ul>
+
+					<aside class="notes">
+						Some features require polyfills and shims for older browser and some features have limited functionality in older versions of IE. Babel provides polyfills for some ES2015 features through the core-js project.
+					</aside>
 				</section>
 
 				<section>
@@ -311,28 +319,51 @@
 
 				<section>
 					<img src="images/react-codemod.png"/>
+					<aside class="notes">
+						React codemod is an interesting project. Users of React eventually need to upgrade. React was at 0.12, moved to 0.13, and is moving to 0.14. As part of the upgrades there are deprecations and sometimes breaking changes. The React team writes these codemods to allow users to automatically upgrade some of these simple changes.
+					</aside>
 				</section>
 
 				<section>
 					<code>this.refs.foo.findDOMNode()</code>
 					<p>⬇</p>
 					<code>ReactDOM.findDOMNode(this.refs.foo)</code>
+					<aside class="notes">
+						This is an example of one of the codemods you can use with react-codemod. In older versions of React users would always use the syntax you see at the top. Newer versions will warn or fail on that older syntax. And it would be painful to have to search through your entire codebase for references like this, especially if you have a large codebase and a lot of developers working on it at the same time. You can use this codemod and make one atomic change to the entire code based to update to the new version of syntax automatically.
+					</aside>
 				</section>
 
 				<section>
 					<a href="//jscs.info">jscs.info</a>
 					<img src="images/jscs-autofixing.png"/>
+					<aside class="notes">
+						JSCS is a JavaScript style checker. You define some configuration for the general style of your JavaScript code and JSCS will do operations like other compilers, and output code matching your style configurations. This is also something available to the
+					</aside>
+				</section>
+
+				<section>
+					<a href="//rdio.github.io/jsfmt/">rdio.github.io/jsfmt/</a>
+					<img src="images/jsfmt-logo.png"/>
 				</section>
 
 				<section>
 					<img src="images/eslint-autofixing.png"/>
+					<aside class="notes">
+						This is a feature of ESlint that coming. I don't think it's completely baked yet. But imagine, your team decides that you want to make sure you have semicolons at the end of all of your statements. Instead of a warning or an error, some simple style configurations can be autofixed.
+					</aside>
 				</section>
 
 				<section>
-					<p></p>
+					<p>Useful links</p>
 					<ul>
-						<li>Effective JavaScript codemods <a>https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb</a></li>
+						<li>Effective JavaScript codemods <a href="//medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb">medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb</a></li>
+						<li>JSCodeshift <a href="https://github.com/facebook/jscodeshift">github.com/facebook/jscodeshift</a></li>
+						<li>Babel <a href="//babeljs.io">babeljs.io</a></li>
+						<li>JSCS <a href="//jscs.info">jscs.info</a></li>
 					</ul>
+					<aside class="notes">
+						"Effective JavaScript codemods" is a medium article discussing some of the same concepts that I've brought up today. react-codemod is implemented using JSCodeshift. So this is some useful follow up reading material if you want to know more.
+					</aside>
 				</section>
 
 				<section style="text-align: left;">
