@@ -36,7 +36,7 @@ I'm far from an expert on compilers, but I want to say a few words. The Babel pr
 
 ## Major patterns
 
-Rest/spread for arrays and objects, destructuring, classes, generators/yield, classes, module syntax, arrow functions, object literal shorthands, for..of, template strings, let/const, async/await. Easier to understand and more elegant than patterns available in ES5.
+destructuring, classes, generators/yield, classes, module syntax, arrow functions, object literal shorthands, for..of, template strings, let/const, async/await. Easier to understand and more elegant than patterns available in ES5.
 
 ## Babel default transforms, polyfills, and options
 
@@ -51,6 +51,8 @@ The TC39 categorises proposals into 4 stages:
 * Stage 4 - Finished
 
 Notable stage 3 proposals - object rest/spread, async functions.
+
+Discuss toggleable transforms
 
 ## Code re-writting tools and patterns
 
