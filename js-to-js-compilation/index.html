@@ -123,25 +123,6 @@
 				</section>
 
 				<section>
-					<p>Babel Integrations</p>
-					<ul>
-						<li>Webpack</li>
-						<li>Node</li>
-						<li>React/JSX/Flow</li>
-						<li>Jasmine</li>
-						<li>Mocha</li>
-						<li>ESlint</li>
-						<li>Grunt</li>
-						<li>Gulp</li>
-						<li>Browserify</li>
-						<li>More...</li>
-					</ul>
-					<aside class="notes">
-						Babel integrates with many popular JavaScript tools.
-					</aside>
-				</section>
-
-				<section>
 					<p>ES2015</p>
 					<p>Huge improvement to the quality</p>
 					<p>of life for JavaScript developers</p>
@@ -221,6 +202,72 @@
 
 				<section>
 					<section>
+						<p>Source code</p>
+						<p>⬇</p>
+						<p>Token stream</p>
+						<p>⬇</p>
+						<p>Abstract syntax tree (AST)</p>
+						<p>⬇</p>
+						<p>Compiled output</p>
+
+						<aside class="notes">
+							This is a generic workflow for a compiler. Input source code is parsed into a token stream, or list, and then analyized into an abstract syntax tree, and the AST is transformed into the compiled output. In GCC c++ code is transformed into machine code, the CoffeeScript compiler transforms the coffeescript syntax into JavaScript. Babel accepts syntax that is often new and unsupported in current browsers and transforms that into code that *can* be run, with the same semantics.
+						</aside>
+					</section>
+
+					<section>
+						<code>var a = 42;</code>
+						<br/>
+						<img src="images/ast-example.png"/>
+						<aside class="notes">
+							Babel is implemented using transforms. Your source code is read, parsed into a stream of tokens, a simple list. Then the list of tokens is analyzed into an abstract syntax tree. And finally transformed into the generated code.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<p>Experimental Babel transforms</p>
+					<img src="images/experimental-transforms.png"/>
+				</section>
+
+
+				<section>
+					<p>Babel Integrations</p>
+					<ul>
+						<li>Webpack</li>
+						<li>Node</li>
+						<li>React/JSX/Flow</li>
+						<li>Jasmine</li>
+						<li>Mocha</li>
+						<li>ESlint</li>
+						<li>Grunt</li>
+						<li>Gulp</li>
+						<li>Browserify</li>
+						<li>More...</li>
+					</ul>
+					<aside class="notes">
+						Babel integrates with many popular JavaScript tools.
+
+						My talk over this summer at Minnebar10 discussed integrating all of these tools with Babel.
+					</aside>
+				</section>
+
+				<section>
+					<p>Supporting older browsers</p>
+					<ul>
+						<li>ES6 methods and Symbol polyfills</li>
+						<li>ES5 shim</li>
+						<li>IE10 and below - classes possible with loose mode</li>
+						<li>IE8 and below - modules loose mode, no getters and setters</li>
+					</ul>
+
+					<aside class="notes">
+						Some features require polyfills and shims for older browser and some features have limited functionality in older versions of IE.
+					</aside>
+				</section>
+
+				<section>
+					<section>
 						<p>Babel defaults</p>
 						<p>Stage 2 and above</p>
 					</section>
@@ -237,13 +284,6 @@
 						<aside class="notes">
 							Proposals for inclusion into JavaScript the languages happens in stages. From zero to four. An idea for a few feature to being implemented across several JavaScript runtime environments. So all of ES2015 would past this stage and already included in the language. A few notable proposals include async functions, and object rest and spread syntax.
 						</aside>
-					</section>
-				</section>
-
-				<section>
-					<section>
-						<p>Babel experimental transforms</p>
-						<img src="images/experimental-transforms.png"/>
 					</section>
 				</section>
 
@@ -294,6 +334,10 @@
 							src="images/twitter-bird.png">
 						<span>/</span><span>_aaronackerman_</span>
 					</p>
+				</section>
+
+				<section>
+					<p>Questions?</p>
 				</section>
 
 			</div>
