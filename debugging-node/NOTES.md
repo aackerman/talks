@@ -73,9 +73,13 @@ You can use the v8-profiler to create heap snapshots and CPU profiles while your
 
 ** v8-profiler demo - create a CPU profile and look at what is taking the most time **
 
+This demo starts a server to accept requests and does work synchronously before responding to the request. We use the v8-profiler module to start CPU profiling as soon as the server is ready to start accepting connections. After five requests the server closes and writes the CPU profile to disk.
+
 ### Memory leaks
 
 ** v8-profiler demo - create a heap dump and talk about a memory leak **
+
+This demo starts a server to accept requests and does work synchronously before responding to the request. After five requests the server closes we use the v8-profiler module to take a snapshot of the object on the v8 heap and write the snapshot to disk.
 
 ## node-memwatch
 
@@ -120,8 +124,6 @@ Navigating a core dump
 * http://dtrace.org/blogs/dap/2012/01/13/playing-with-nodev8-postmortem-debugging/
 
 TODO:
-* An example of using the v8-profiler to capture a heap dump
-* An example of using the v8-profiler to capture a CPU profile
 * An example of using node-inspector to debug a problem
 * An example of generating a flamegraph
 * An example of using the node step debugger
@@ -137,6 +139,9 @@ TODO:
 * https://github.com/joyent/node-stackvis
 * https://github.com/thlorenz/v8-perf
 * http://github.com/brendangregg/FlameGraph
+* http://www.brendangregg.com/flamegraphs.html
+* https://www.joyent.com/blog/mdb-and-linux
+* http://wiki.smartos.org/display/DOC/Download+SmartOS
 * http://www.slideshare.net/yunongx/debugging-node-in-prod
 * http://dtrace.org/blogs/dap/2012/01/13/playing-with-nodev8-postmortem-debugging/
 * https://blog.risingstack.com/finding-a-memory-leak-in-node-js/
