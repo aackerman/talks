@@ -92,7 +92,10 @@ You can use the v8-profiler to create heap snapshots and CPU profiles while your
 
 ## Flamegraphs
 
+To create a flamegraph you will need tracing output from the running application. On OSX you can use Dtrace if your installation of Node was built including support for Dtrace. You can figure out if your application was built with Dtrace support by running `node -p process.config` and checking `node_use_dtrace: true`.
+
   * http://yunong.io/2015/11/23/generating-node-js-flame-graphs/
+  * npm install -g stackvis
   * http://github.com/brendangregg/FlameGraph
   * http://www.brendangregg.com/flamegraphs.html
   * Dtrace, Linux perf events
@@ -124,3 +127,19 @@ TODO:
 * An example of using the node step debugger
 * An example of analyzing a core dump in manta/mdb
 * An example of using node-memwatch to log out when a memory leak is possibly happening
+
+## Links
+
+* https://github.com/lloyd/node-memwatch
+* https://github.com/bnoordhuis/node-heapdump
+* https://github.com/node-inspector/node-inspector
+* https://github.com/node-inspector/v8-profiler
+* https://github.com/joyent/node-stackvis
+* https://github.com/thlorenz/v8-perf
+* http://github.com/brendangregg/FlameGraph
+* http://www.slideshare.net/yunongx/debugging-node-in-prod
+* http://dtrace.org/blogs/dap/2012/01/13/playing-with-nodev8-postmortem-debugging/
+* https://blog.risingstack.com/finding-a-memory-leak-in-node-js/
+* https://hacks.mozilla.org/2012/11/tracking-down-memory-leaks-in-node-js-a-node-js-holiday-season/
+* https://www.joyent.com/developers/videos/walmart-node-js-memory-leak-part-1
+* https://www.joyent.com/developers/videos/walmart-node-js-memory-leak-part-2
