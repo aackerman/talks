@@ -47,13 +47,17 @@ So it's very useful to be able to debug a running program while it's broken. Bes
 
 ## Step debugging with Node debugger API
 
-After logging, a step debugger is the next most powerful tool in our arsenal to bring into the mix. We'll first look at the command line Debugger API that is available in node without any extra modules. After that we'll take a look at the debuggers made available by the `node-inspector` project, the WebStorm IDE debugger, and the VSCode debugger.
+After logging, a step debugger is the next most powerful tool in our arsenal to bring into the mix. We'll first look at the command line Debugger API that is available in node without any extra modules. After that we'll take a look at the debuggers made available by the `node-inspector` project.
 
 ## Process hooks
 
-An uncaught exception handler is great for catching exceptions in your JavaScript code. But doesn't do anything to help you handle a SEGFAULT in native modules.
+We'll spend a couple minutes on process hooks, these provide you with a few specialized callbacks to notify your program about uncaught exceptions and unhandled native promise rejections. At one point the Node standard library included a concept called domains that provided other error handling but the API has been deprecated and should not be used going forward. The important thing to remember here is that these hooks are here for unexpected behavior. The uncaught exception handler should usually just log and exit the process. Understanding why this happened is the important part with debugging but unfortunately using the uncaught exception handler often loses information about where the error was generated.
+
+So let's take a look at the three hooks that are available. The promise hooks are only available in later versions of Node, 4.x and beyond. These hooks were not available in 0.12.
 
 ** process hooks debugging demo **
+
+An uncaught exception handler is good for catching exceptions in your JavaScript code. But doesn't do anything to help you handle a SEGFAULT in native modules.
 
 ## node-inspector
 
@@ -67,9 +71,17 @@ You can use the v8-profiler to create heap snapshots and CPU profiles while your
 
 ### CPU profiles
 
+** v8-profiler demo - create a CPU profile and look at what is taking the most time **
+
 ### Memory leaks
 
-### Heap dumps
+** v8-profiler demo - create a heap dump and talk about a memory leak **
+
+## node-memwatch
+
+** memwatch demo - create a memory leak and run the server and allow memwatch to log the leaks **
+
+### Memory leaks
 
   * https://github.com/lloyd/node-memwatch
   * https://github.com/bnoordhuis/node-heapdump
@@ -103,7 +115,6 @@ Navigating a core dump
 * https://www.joyent.com/blog/mdb-and-linux
 * http://www.slideshare.net/yunongx/debugging-node-in-prod
 * http://dtrace.org/blogs/dap/2012/01/13/playing-with-nodev8-postmortem-debugging/
-
 
 TODO:
 * An example of using the v8-profiler to capture a heap dump
