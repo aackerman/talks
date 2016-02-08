@@ -1,26 +1,20 @@
 # Debugging Node
 
-Thanks Mike for inviting me to speak. I haven't spoken at NodeMN before and I appreciate the opportunity to speak here.
+Thanks to our hosts for inviting me to speak. I haven't spoken at NodeMN before and I appreciate the opportunity to speak here.
 
-I'm told that people from MN are extremely quick speakers and I've listened to recordings of my presentations and I tend to speak even more quickly than my normal cadence so if I go over something too quickly please raise a hand and ask me a question and I apologize in advance.
+I'm told that people from MN are extremely quick speakers and I've listened to recordings of my own presentations and I tend to speak even more quickly than my normal cadence so if I go over something too quickly please raise a hand and ask me a question and I apologize in advance.
 
-This talk isn't specifically targeted towards expert audiences but there's a good portion of expert level content in this talk. I have my slides and links online on github, so when you have questions after the talk I'll give you a link and you can read up afterwards if there is anything I go over too quickly.
+This talk isn't specifically targeted towards expert audiences but there's a good portion of expert level content in this talk. I have my slides and links online on github, if you have questions after the talk I'll give you a link and you can read up afterwards if there is anything I go over too quickly. I have a lot of links to blog posts and helpful modules.
 
 Let's get started.
 
-I consider myself adept at debugging JavaScript and I had used several of the debugging techniques I'll present here today before I agreed to speak tonight. But I decided to do the research and actually try several of the debugging techniques that I've read articles about. Let me tell you, debugging Node is a horse of a different color than debugging in-browser JavaScript. I've never had to do post-mortem debugging from a browser crash, users just reload the page. But if you run Node in production at some point in time you might have to understand why your process always segfaults after running for 20 minutes or your process crashes due to a memory overflow after 6 hours.
+I consider myself adept at debugging JavaScript and I had used several of the debugging techniques I'll present here today before I agreed to speak tonight. But I decided to do the research and actually try several of the debugging techniques that I've read articles about. Debugging Node is a horse of a different color than debugging in-browser JavaScript. I've never had to do post-mortem debugging from a browser crash, users just reload the page.
 
-I can think of a few different types of debugging that you might want to do.
+If you run Node in production, at some point in time you might have to understand why your process crashes, and you can't reproduce it in devlepment. There are certain types of problems that only appear at heavy load in a production environment exposed to real user data.
 
-* Developing new features and working through testing new code.
-* Understanding a problem that is in progress in a live production system.
-* Understanding a problem based on artifacts from a crashed production system.
-* Understanding why your system is slow.
+I can think of a few different types of debugging that you might want to do. You're developing new features and working through testing new code, you're running your tests in a headless process and you're tests are failing and you have no idea why. You could have a problem in production where something just isn't going quite right in 1 out of 1000 cases. You could have a problem where your Node process crashes every five hours and requires a restart. Or you could have a problem where your system is just slower than you need it to be.
 
-And it will basically always be one of the following types of problem:
-* My app does the wrong thing (faulty logic)
-* My app is slow (not enough CPU, poor perf)
-* My app crashes (memory leaks)
+To sum up, you'll hit these types of problems: my app does the wrong thing sometimes or all the time, my app is slow, or my app crashes.
 
 One fortunate thing about JavaScript is that it's always single threaded and garbage collected. We don't have to worry about manually handling memory or thread deadlocks, unless you're writing native modules. We always have to worry about faulty application logic and overusing system resources such as CPU and memory. And these are the areas where debugging, tracing and profiling tools are the most important.
 
@@ -59,6 +53,8 @@ After logging, a step debugger is the next most powerful tool in our arsenal to 
 
 An uncaught exception handler is great for catching exceptions in your JavaScript code. But doesn't do anything to help you handle a SEGFAULT in native modules.
 
+** process hooks debugging demo **
+
 ## node-inspector
 
 With node-inspector you can debug node programs with the developer tools you find in Chrome.
@@ -84,6 +80,11 @@ You can use the v8-profiler to create heap snapshots and CPU profiles while your
 
 ## Flamegraphs
 
+  * http://yunong.io/2015/11/23/generating-node-js-flame-graphs/
+  * http://github.com/brendangregg/FlameGraph
+  * http://www.brendangregg.com/flamegraphs.html
+  * Dtrace, Linux perf events
+
 ## Core dumps
 
 Creating a core dump
@@ -95,8 +96,20 @@ Creating a core dump
 
 Navigating a core dump
   * ::jsstacks
-  * ::
+  * ::findjsobjects
+  * ::jsprint
+  * ::findleaks
 
 * https://www.joyent.com/blog/mdb-and-linux
 * http://www.slideshare.net/yunongx/debugging-node-in-prod
 * http://dtrace.org/blogs/dap/2012/01/13/playing-with-nodev8-postmortem-debugging/
+
+
+TODO:
+* An example of using the v8-profiler to capture a heap dump
+* An example of using the v8-profiler to capture a CPU profile
+* An example of using node-inspector to debug a problem
+* An example of generating a flamegraph
+* An example of using the node step debugger
+* An example of analyzing a core dump in manta/mdb
+* An example of using node-memwatch to log out when a memory leak is possibly happening
