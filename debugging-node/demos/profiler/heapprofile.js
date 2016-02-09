@@ -15,7 +15,7 @@ const doWorkSync = (n) => {
   for (let i = 0; i < n; i++) {
     tmp.push(i);
   }
-  // cache[n] = tmp;
+  cache[n] = tmp;
 };
 
 const server = http.createServer((req, res) => {
