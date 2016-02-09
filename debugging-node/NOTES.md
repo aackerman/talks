@@ -47,10 +47,6 @@ So it's very useful to be able to debug a running program while it's broken. Bes
 
  Observability is a key feature of a system that is easy to debug.
 
-## Step debugging with Node debugger API
-
-After logging, a step debugger is the next most powerful tool in our arsenal to bring into the mix. We'll first look at the command line Debugger API that is available in node without any extra modules. After that we'll take a look at the debuggers made available by the `node-inspector` project.
-
 ## Process hooks
 
 We'll spend a couple minutes on process hooks, these provide you with a few specialized callbacks to notify your program about uncaught exceptions and unhandled native promise rejections. At one point the Node standard library included a concept called domains that provided other error handling but the API has been deprecated and should not be used going forward. The important thing to remember here is that these hooks are here for unexpected behavior. The uncaught exception handler should usually just log and exit the process. Understanding why this happened is the important part with debugging but unfortunately using the uncaught exception handler often loses information about where the error was generated.
@@ -88,6 +84,10 @@ This demo starts a server to accept requests and does work synchronously before 
 ## node-memwatch
 
 ** memwatch demo - create a memory leak and run the server and allow memwatch to log the leaks **
+
+memwatch doesn't appear to work on newer version of v8 in newer versions of node
+
+It is ideal to have telemetry tracking for your node processes to send rss and heap memory statistics. This allows a system to have insights into why a process might be crashing.
 
 ### Memory leaks
 
@@ -151,10 +151,9 @@ Navigating a core dump
 * http://dtrace.org/blogs/dap/2012/01/13/playing-with-nodev8-postmortem-debugging/
 
 TODO:
-* An example of using node-inspector to debug a problem
-* An example of using the node step debugger
-* An example of analyzing a core dump in manta/mdb
 * An example of using node-memwatch to log out when a memory leak is possibly happening
+* An example of using node-inspector to debug a problem
+* An example of analyzing a core dump in manta/mdb
 
 ## Links
 
