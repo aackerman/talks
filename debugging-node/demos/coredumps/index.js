@@ -1,3 +1,4 @@
+// force v8 to calculate line numbers
 new Error().stack;
 
 function main(arg) { func1(); }
