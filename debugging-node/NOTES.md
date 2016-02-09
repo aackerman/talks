@@ -150,8 +150,11 @@ Navigating a core dump
 * http://www.slideshare.net/yunongx/debugging-node-in-prod
 * http://dtrace.org/blogs/dap/2012/01/13/playing-with-nodev8-postmortem-debugging/
 
+## Not an easy task
+
+Debugging problems in Node is not an easy task. It requires a lot of specialized knowledge from a variety of different areas. It can require deep knowledge of node, v8, linux performance tools, solaris performance tools, interactive debuggers, understanding stack information, memory leaks, and more often than not some knowledge of C/C++
+
 TODO:
-* An example of using node-memwatch to log out when a memory leak is possibly happening
 * An example of using node-inspector to debug a problem
 * An example of analyzing a core dump in manta/mdb
 

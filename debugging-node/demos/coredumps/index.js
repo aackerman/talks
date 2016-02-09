@@ -1,13 +1,17 @@
 // force v8 to calculate line numbers
 new Error().stack;
+var fs = require('fs');
+var http = require('http');
+var url = require('url');
 
-function main(arg) { func1(); }
-function func1() { func2(); }
+var hostname = '0.0.0.0';
+var port = 1337;
+var data = { urls: [] };
 
-function func2() {
-  (function () {
-    for (;;);
-  })();
-}
-
-main({ 'hello': 'world' });
+var server = http.createServer(function createServer(req, res) {
+  data.urls.push(req.url);
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello World\n');
+}).listen(port, hostname, function listenCallback() {
+  console.log('Server running at http://' + hostname + ':' + port);
+});

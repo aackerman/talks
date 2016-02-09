@@ -1,13 +1,18 @@
 'use strict';
-const fs = require('fs');
-const http = require('http');
+var fs = require('fs');
+var http = require('http');
+var url = require('url');
 
-const hostname = '127.0.0.1';
-const port = 1337;
+var hostname = '0.0.0.0';
+var port = 1337;
+var data = { urls: [] };
 
-http.createServer((req, res) => {
+var server = http.createServer(function createServer(req, res) {
+  data.urls.push(req.url);
+  var parts = url.parse(req.url);
+  if (/exit/.test(parts.pathname)) { process.exit(1); }
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Hello World\n');
-}).listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+}).listen(port, hostname, function listenCallback() {
+  console.log('Server running at http://' + hostname + ':' + port);
 });
