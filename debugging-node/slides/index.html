@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>React Native</title>
+    <title>Debugging Node</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -28,6 +28,15 @@
       }
     </script>
 
+    <style>
+      .slides .no-border-img {
+        border: none;
+        margin: 0;
+        box-shadow: none;
+        background-color: transparent;
+      }
+    </style>
+
     <!--[if lt IE 9]>
     <script src="lib/js/html5shiv.js"></script>
     <![endif]-->
@@ -43,92 +52,56 @@
         </section>
 
         <section>
-          <p>What is React?</p>
+          <h2>Hello there!</h2>
+          <p style="font-size: 60px">
+            <img
+              class="no-border-img"
+              style="margin-right: -15px;"
+              height="40"
+              src="images/twitter-bird.png">
+            <span>/</span><span>_aaronackerman_</span>
+          </p>
         </section>
 
         <section>
-          <p>What does React Native even mean?</p>
+          <p>I work on JavaScript projects at Code42</p>
+          <p>We're hiring</p>
         </section>
 
         <section>
-          <p>View rendering and component abstraction</p>
-          <ul>
-            <li>Browser HTML/DOM (react)</li>
-            <li>Browser HTML Canvas (react-canvas)</li>
-            <li>UIView (react-native)</li>
-            <li>android.view.View (future)</li>
-          </ul>
+          <blockquote>
+            Observability is a key feature<br> of a system that is easy to debug
+          </blockquote>
         </section>
 
         <section>
-          <p><b>Learn once, write anywhere</b></p>
-          <p>vs.</p>
-          <p>Write once, run anywhere</p>
+          <section>
+            <h3>Logging</h3>
+          </section>
+
+          <section>
+            <p>console.log</p>
+          </section>
+
+          <section>
+            <p>npm install debug</p>
+          </section>
         </section>
 
         <section>
-          <p>React Native code runs in a JavaScriptCore VM</p>
-          <p>Q: What is in a JavaScript VM?</p>
+          <p>process.on</p>
         </section>
 
         <section>
-          <p>Do you think this feature is provided by a JavaScript VM</p>
-          <br>
-          <ul>
-            <li>Math<span class="fragment"> - Yes</span></li>
-            <li class="fragment">setTimeout<span class="fragment"> - No</span></li>
-            <li class="fragment">JSON<span class="fragment"> - Yes</span></li>
-            <li class="fragment">console.log<span class="fragment"> - No</span></li>
-            <li class="fragment">XMLHttpRequest<span class="fragment"> - No</span></li>
-            <li class="fragment">addEventListener<span class="fragment"> - No</span></li>
-          </ul>
-          <br><br>
-          <p class="fragment">How do I even JavaScript without all of those?</p>
+          <p>npm i v8-profiler</p>
         </section>
 
         <section>
-          <p>Differences between using React and React Native</p>
-          <br>
-          <ul>
-            <li>Browser/Node vs JavaScriptCore VM</li>
-            <li>XMLHttpRequest implemented on iOS networking stack</li>
-            <li>fetch API available via polyfill on top of XMLHttpRequest</li>
-            <li>ES6 Promises polyfill provided</li>
-            <li>console.log provided using RCTBridge</li>
-            <li>setTimeout provided using RCTTiming</li>
-            <li>Object.assign polyfill</li>
-            <li>EventEmitter polyfill</li>
-            <li>flexbox layout</li>
-          </ul>
-          <br><br>
-          <p>Completely different host environment</p>
-          <p>Lots of libraries using incomplete feature detection</p>
+          <p>npm i node-inspector</p>
         </section>
 
         <section>
-          <p>Challenges as a web developer</p>
-          <ul>
-            <li>iOS/OSX/Objective-C ecosystem is huge</li>
-            <li>XCode GUI tools vs command line tools</li>
-            <li>Apple developer license $99/year</li>
-            <li>Stying of elements is not CSS</li>
-            <li>Easy to learn syntax, hard to learn tools</li>
-          </ul>
-        </section>
-
-        <section>
-          <p>Developer tools awesome</p>
-          <ul>
-            <li class="fragment">Build toolchain OOTB</li>
-            <li class="fragment">JSX and Flowtype (static type analysis) compilation</li>
-            <li class="fragment">Debug via Chrome Dev Tools</li>
-            <li class="fragment">CMD+R Refresh</li>
-            <li class="fragment">Red Screen of Death</li>
-          </ul>
-        </section>
-
-        <section>
-          <p>Live demo app</p>
+          <p>npm i memwatch</p>
         </section>
 
         <section>
