@@ -43,7 +43,9 @@ So it's very useful to be able to debug a running program while it's broken. Bes
 
 ** debug module debugging demo **
 
- But logging only works for simple problems, so let's look at a simple problem that logging can help solve.
+ In an ideal debug logging environment, you can turn debugging on or off per file at runtime.
+
+ Observability is a key feature of a system that is easy to debug.
 
 ## Step debugging with Node debugger API
 
@@ -56,6 +58,8 @@ We'll spend a couple minutes on process hooks, these provide you with a few spec
 So let's take a look at the three hooks that are available. The promise hooks are only available in later versions of Node, 4.x and beyond. These hooks were not available in 0.12.
 
 ** process hooks debugging demo **
+
+If you take a look at what's going on here the script registers three handlers for process event callbacks and runs four timeouts. The first to create and reject a promise, to show the callback trigger on `unhandledRejection` hook. The second to handle the promise rejection in a different tick of the event loop to trigger the `handledRejection` hook. The third to throw an exception to trigger the `uncaughtException` handler and finally a timeout to keep the script running to show that the `uncaughtException` handler prevents scripts from exiting early.
 
 An uncaught exception handler is good for catching exceptions in your JavaScript code. But doesn't do anything to help you handle a SEGFAULT in native modules.
 
@@ -94,6 +98,12 @@ This demo starts a server to accept requests and does work synchronously before 
   * https://www.joyent.com/developers/videos/walmart-node-js-memory-leak-part-1
   * https://www.joyent.com/developers/videos/walmart-node-js-memory-leak-part-2
 
+
+* Run the server with the --expose-gc flag: `node --expose-gc server.js`. This makes the gc() function available to our JS code which forces a collection.
+* Create a handler for SIGUSR2 with process.on which calls gc().
+* Run the load-test again, and tell our process to run a collection with kill -SIGUSR2 $(pgrep -lfa node | grep server.js | awk '{print $1}') to see if that makes a difference.
+
+
 ## Flamegraphs
 
 To create a flamegraph you will need tracing output from the running application. On OSX you can use Dtrace if your installation of Node was built including support for Dtrace. You can figure out if your application was built with Dtrace support by running `node -p process.config` and checking `node_use_dtrace: true`.
@@ -103,6 +113,23 @@ To create a flamegraph you will need tracing output from the running application
   * http://github.com/brendangregg/FlameGraph
   * http://www.brendangregg.com/flamegraphs.html
   * Dtrace, Linux perf events
+
+Flamegraph trips:
+* dtrace errored on OSX Yosemite
+* nvm download of node on linux isn't built with dtrace support
+* stackvis threw up on my output data from the linux `perf` tool
+* Unable to build node 5.5.0 with dtrace support on linux
+
+* Use the normal Flamegraph tools from the repo instead of `stackvis`
+```
+$ sudo apt-get install linux-tools-common
+$ sudo apt-get install linux-tools
+$ git clone https://github.com/brendangregg/FlameGraph
+$ cd FlameGraph
+$ perf record -F 99 -a -g -- sleep 60
+$ perf script | ./stackcollapse-perf.pl > out.perf-folded
+$ ./flamegraph.pl out.perf-folded > perf-kernel.svg
+```
 
 ## Core dumps
 
@@ -125,7 +152,6 @@ Navigating a core dump
 
 TODO:
 * An example of using node-inspector to debug a problem
-* An example of generating a flamegraph
 * An example of using the node step debugger
 * An example of analyzing a core dump in manta/mdb
 * An example of using node-memwatch to log out when a memory leak is possibly happening
