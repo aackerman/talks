@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Cross Platform Applications with Electron</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<img src="images/electron.png" style="border:0"/>
+				</section>
+
+				<section>
+					<p>Aaron Ackerman</p>
+					<p>twitter.com/_aaronackerman_</p>
+					<p>github.com/aackerman</p>
+
+					<aside class="notes">
+						I'm Aaron Ackerman.
+
+						You can find me on twitter and github at the addresses on these slides.
+
+						I'm here today because I wanted to share with everybody here my experiences working with electron and shipping a product. I recently left Code 42, but while I was there I spent several months building and shipping a product through its initial release and two subsequent releases over the course of a year.
+					</aside>
+				</section>
+
+				<section>
+					<p>What is electron?</p>
+					<ul>
+						<li>A collection of open source technologies</li>
+						<li>An ecosystem of tools</li>
+						<li>An interface to native APIs</li>
+					</ul>
+
+					<aside class="notes">
+						Electron is both a collection of open source technologies as well as an ecosystem of tools. When you think about Java, JavaScript or Node.js you can't discount the entire community of tools built up aroud it. That's electron in the abstract.
+
+						More concretely electron provides access to native APIs.
+					</aside>
+				</section>
+
+				<section>
+					What are the other competing projects
+
+					NW.js (previously known as node-webkit), CEF (chromium embedded framework), Adobe AIR, Qt
+				</section>
+
+				<section>
+					Who's investing
+
+					Github (Atom editor), Microsoft (VS Code),
+					Facebook (Nuclide), Slack (Slack desktop), Basecamp (Basecamp desktop), Docker (Kitematic), Wordpress (Wordpress desktop)
+				</section>
+
+				<section>
+					Whats great
+
+					APIs and functionality, documentation, support, auto-updating through squirrel, responses to issues were great, I created ten issues over the
+				</section>
+
+				<section>
+					Challenges
+
+					* Cross-platform testing
+					* Platform specific bugs
+						* Window is sometimes black (win)
+						* Window is sometimes only white (osx)
+						* Menu unresponsive (osx)
+						* ipc sync messages out of order
+						* menu popup thread blocking
+						*
+					* Multi-process no shared-memory
+				</section>
+
+
+				<section>
+					Selenium testing
+
+					Ruby, Cucumber, Capybara
+				</section>
+
+				<section>
+					Working with pre-1.0 OSS
+
+					app.makeSingletonInstance
+				</section>
+
+				<section>
+					Security considerations
+				</section>
+
+				<section>
+					Auto-updating applications
+				</section>
+
+				<section>
+					<section>
+						Ecosystem of tools
+					</section>
+
+					<section>
+						electron-prebuilt
+					</section>
+
+					<section>
+						electron-packager
+					</section>
+
+					<section>
+						Devtron
+						<img src="images/devtron.png">
+					</section>
+
+					<section>
+						Spectron
+						<img src="images/spectron.png">
+					</section>
+				</section>
+
+				<section>
+					Supported platforms
+
+					OSX (>= 10.9), Windows (Windows 7 / Server 2008 R2 or higher), Linux (Ubuntu 12.04)
+				</section>
+
+
+				<section>
+
+				</section>
+				<section>
+
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
