@@ -43,51 +43,110 @@
 				</section>
 
 				<section>
-					<p>What is electron?</p>
+					<p>What is Electron?</p>
+
 					<ul>
+						<li>An interface to native APIs</li>
 						<li>A collection of open source technologies</li>
 						<li>An ecosystem of tools</li>
-						<li>An interface to native APIs</li>
 					</ul>
 
 					<aside class="notes">
-						Electron is both a collection of open source technologies as well as an ecosystem of tools. When you think about Java, JavaScript or Node.js you can't discount the entire community of tools built up aroud it. That's electron in the abstract.
+						If in the past you had heard the name Atom Shell, Electron is the exact same project with a new name.
 
-						More concretely electron provides access to native APIs.
+						Electron can be described in several ways: an interface to native APIs, a collection of open source technologies, as well as an ecosystem of tools.
+
+						That's electron in the abstract. It provides a shell to build cross platform desktop applications.
+
+						More concretely Electron provides access to native APIs. For example, the ability to open browser windows, or access the OSX menubar or Windows systray, or create notifications through the native systems of the OS. All while allowing you the use of HTML, CSS, and JavaScript to build your user interfaces.
 					</aside>
 				</section>
 
 				<section>
-					What are the other competing projects
+					<p>Competing projects</p>
 
-					NW.js (previously known as node-webkit), CEF (chromium embedded framework), Adobe AIR, Qt
+					<ul>
+						<li>NW.js (previously known as node-webkit)</li>
+						<li>CEF (Chromium Embedded Framework)</li>
+						<li>Adobe AIR</li>
+						<li>Qt</li>
+						<li>Java</li>
+					</ul>
+
+					<aside class="notes">
+						I use the term 'competing projects' pretty liberally. For a person whose focus is on user interfaces and JavaScript the most viable other choice is NW.js.
+
+						But I want to give these other projects some credit as viable choices for cross-platform desktop applications because they are being used by some great companies.
+
+						`node-webkit` came first and paved the way for Electron, it's backed Intel.
+
+						If you've ever played any games from Blizzard like World of Warcraft, Diablo, StarCraft or Hearthstone, the battle.net app that launches and handles updates for all of their games uses Chromium embedded framework to display views.
+
+						If you've ever played League of Legends, their game client launcher was written in Adobe AIR.
+
+						I looked up apps that are using Qt and I was surprised to fine that the Maya product from Autodesk, which if you're unfamiliar is used to create 3d models for movies, games, and other media uses Qt. And the Tesla Model S in-car UI also uses Qt.
+
+						As far as Java is concerned I'm sure you've heard of Eclipse. IntelliJ is also written in Java. And when I worked at Code42, the original CrashPlan desktop client was written as a cross platform desktop application in Java.
+
+						Other options do exist. If you choose to create a desktop application I'm sure you'll weigh the different options and it will depend on the expertise of the team. A team of Java engineers might choose to use Java. A team of C++ engineers might choose to use Qt or CEF. But if you have any experience with JavaScript I would bet on Electron.
+
+						I did just that when I was at Code 42. Code 42 had an initiative to rewrite the CrashPlan desktop client using web technology. At the start of 2015 I worked on a small team, I weighed the options and I made the recommendation to senior engineering leadership to go with Electron. And that's what the company decided to use to create the interface to their flagship product. At the time I left Code 42 we had shipped three versions of the new desktop client to our enterprise customers.
+					</aside>
 				</section>
 
 				<section>
-					Who's investing
+					<p>Built with Electron</p>
 
-					Github (Atom editor), Microsoft (VS Code),
-					Facebook (Nuclide), Slack (Slack desktop), Basecamp (Basecamp desktop), Docker (Kitematic), Wordpress (Wordpress desktop)
+					<ul>
+						<li>Atom editor - Github</li>
+						<li>VS Code - Microsoft</li>
+						<li>Nuclide - Facebook</li>
+						<li>Kitematic - Docker</li>
+						<li>Slack desktop - Slack</li>
+						<li>Basecamp desktop - Basecamp</li>
+						<li>Wordpress desktop - Wordpress</li>
+						<li>Many others...</li>
+					</ul>
+
+					<aside class="notes">
+						These are some notable applications and companies that are building products using Electron.
+
+						If you're in this room you've probably tried Atom or VS Code. And you've probably used slack. If you haven't tried any of those, you have some homework. So if you're wondering who you're jumping on the bandwagon with when you decide to use Electron you're in good company.
+					</aside>
 				</section>
 
 				<section>
-					Whats great
+					<p>What's great</p>
 
-					APIs and functionality, documentation, support, auto-updating through squirrel, responses to issues were great, I created ten issues over the
+					<ul>
+						<li>Ecosystem</li>
+						<li>APIs</li>
+						<li>Documentation</li>
+						<li>Support</li>
+						<li>Versioning and Deprecations</li>
+					</ul>
+
+					<aside class="notes">
+						<!-- TODO: -->
+					</aside>
 				</section>
 
 				<section>
-					Challenges
+					<p>Challenges</p>
 
-					* Cross-platform testing
-					* Platform specific bugs
-						* Window is sometimes black (win)
-						* Window is sometimes only white (osx)
-						* Menu unresponsive (osx)
-						* ipc sync messages out of order
-						* menu popup thread blocking
-						*
-					* Multi-process no shared-memory
+					<ul>
+						<li>Missing APIs<li>
+						<li>Cross-platform testing<li>
+						<li>Platform specific bugs</li>
+					</ul>
+
+					<aside class="notes">
+						When I was building on Electron I was working with version 0.32 or something. I needed a way to only allow one instance of my application to be running at a time. Today that's a relatively easy task. Electron provides an API for that `app.makeSingleInstance`. But at the time I had to read through the docs, read through issues, figure out if it was provided and eventually write it myself. I actually cribbed most of the implementation from the Atom Editor but my point is, it's likely you will have to roll up your sleeves and get down with some native code.
+
+						Cross-platform testing can be challenging depending on your organization. If you are in an organization that runs its own test infrastructure, it may be a challenge to run tests on all the platforms you want to support. The team running infrastructure may have to support Windows8, Windows10, OSX, and Linux desktop. That's quite a non-trivial amount of overhead. If you're in a more progressive organization, you may be able to look at the Electron docs, and get Travis CI, Circle CI, and AppVeyor working immediately for every platform you need to support. So there's a spectrum there and it's depends on your company. You might also be able to say, all the features are the same on all platforms only test on linux and let your users create support tickets. As always, there are tradeoffs to consider.
+
+						I've also run into a few platform specific bugs. When the bug was filed it was often something like, 'Sometimes this happens on Windows.' In another case we ran into a bug where the application menu on OSX could become unresponsive in some situations until you clicked out of the application into another application and then clicked back. I checked through the application code, I looked through the electron code, and eventually tracked this down to a bug in OSX itself. And we submitted a patch upstream to Electron to work around the issue. So even when your code is fine, Electron's code is fine, you might run into problems with the OS.
+					</aside>
 				</section>
 
 
@@ -139,14 +198,6 @@
 					Supported platforms
 
 					OSX (>= 10.9), Windows (Windows 7 / Server 2008 R2 or higher), Linux (Ubuntu 12.04)
-				</section>
-
-
-				<section>
-
-				</section>
-				<section>
-
 				</section>
 			</div>
 		</div>
