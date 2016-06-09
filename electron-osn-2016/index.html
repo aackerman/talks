@@ -130,22 +130,6 @@
 				</section>
 
 				<section>
-					<p>What's great</p>
-
-					<ul>
-						<li>Ecosystem</li>
-						<li>APIs</li>
-						<li>Documentation</li>
-						<li>Support</li>
-						<li>Versioning and Deprecations</li>
-					</ul>
-
-					<aside class="notes">
-						<!-- TODO: -->
-					</aside>
-				</section>
-
-				<section>
 					<p>Challenges</p>
 
 					<ul>
@@ -156,9 +140,9 @@
 					</ul>
 
 					<aside class="notes">
-						There are challenges with Electron, like all software it is incomplete and imperfect. I want to say before this next section that overall my intention is to give Electron a glowing review.
+						There are challenges with Electron, like all software it is incomplete and imperfect. I want to say before this next section that overall my intention is to give Electron a glowing review. So I'm going to talk about a few challenges I went through building on Electron
 
-						When I was building on Electron I was working with version 0.32 or something. I needed a way to only allow one instance of my application to be running at a time. Today that's a relatively easy task. Electron provides an API for that `app.makeSingleInstance`. But at the time I had to read through the docs, read through issues, figure out if it was provided and eventually write it myself. I actually cribbed most of the implementation from the Atom Editor but my point is, it's likely you will have to roll up your sleeves and get down with some native code.
+						When I was building on Electron I was working with version 0.32 or something. I needed a way to only allow one instance of my application to be running at a time. Today that's a relatively easy task. Electron provides an API for that `app.makeSingleInstance`. But at the time I had to read through the docs, read through issues, figure out if it was provided and eventually write it myself. I actually cribbed most of the implementation from the Atom Editor but my point is, you might have to roll up your sleeves and get down with some native APIs. If you really have no interested in extending Electron and building from source it's possible to use node-ffi as a native module to access native APIs with the overhead of context switches between native and JavaScript.
 
 						Cross-platform testing can be challenging depending on your organization. If you are in an organization that runs its own test infrastructure, it may be a challenge to run tests on all the platforms you want to support. You might be asking the team running infrastructure to support Windows8, Windows10, OSX, and Linux desktop. That's quite a non-trivial amount of overhead. If you're in a more progressive organization, you may be able to look at the Electron docs, and get Travis CI, Circle CI, and/or AppVeyor working immediately for every platform you need to support. So there's a spectrum there and it's depends on your company. You might also be able to say, all the features are the same on all platforms only test on linux and let your users create support tickets. As always, there are tradeoffs to consider.
 
@@ -172,25 +156,70 @@
 					</aside>
 				</section>
 
-
 				<section>
-					Selenium testing
+					<p>What's great</p>
 
-					Ruby, Cucumber, Capybara
+					<ul>
+						<li>Documentation</li>
+						<li>Support</li>
+						<li>Versioning and Deprecations</li>
+						<li>One runtime</li>
+					</ul>
+
+					<aside class="notes">
+						The ecosystem around Electron is great. That is in large part due to the extremely dedicated employees at Github along with the rest of the community. It's really easy to have bad documentation. It's even easier to have no documentation. But the maintainers of Electron seem to pride themselves on the quality and consistency of there documentation and it really helps the project shine.
+
+						When I was initially evaluating Electron. I looked at the quick start documentation and I had an application running on my desktop within the span of five minutes. And it was more complicated then, I had to download a build of Electron, copy/paste a package.json, index.html, and main.js, then figure out how to run the project. Today you could have this in 4 commands, clone the quick start repo, cd into it, `npm install` and `npm start`.
+
+						The support from the maintainers is fantastic as well. I've filed several issues on the Electron repo, 5 of them confirmed as real bugs, with only one of them still open probably because it's easy to workaround and all of the other issues I've filed we're answered promptly and professionally.
+
+						Electron follows semver as far as I can tell, I haven't seen any major issues with breaking changes that have not been documented or were not bugs. In addition to documenting deprecations warnings are logged when the application uses deprecated APIs. It was easy for me to update from deprecated APIs to use new APIs by searching through the documentation and the electron source for which APIs had been deprecated and changing the code for application I was working on.
+
+						One of the best things about working with Electron is the support for one runtime. You essentially have browser windows that are capable of running the same JavaScript of Chrome stable. Electron 1.2.2 is running Chrome 51 and Node 6.1. So you can use very nearly every feature of ES2015 without using Babel compilation. You'll still have to use Babel if you're using React or you are interested in having future facing features like object rest/spread operators. But you don't have to worry about what kind of browser the user is running because you know exactly which version and the capabilities of it when you build it.
+					</aside>
 				</section>
 
 				<section>
-					Working with pre-1.0 OSS
+					<section>
+						<p>Electron Architecture</p>
+					</section>
 
-					app.makeSingletonInstance
+					<section>
+						<img src="images/electron-architecture.png" style="border:0;background:transparent; box-shadow:none">
+
+						<aside class="notes">
+							Electron employs a very similar architecture that you see in Chrome desktop. One master process is a controller for several other processes. The main process runs in the background and doesn't have any visuals. The job of the main process is to control the lifecycle of the application, display windows, display menus, and handle events dispatched from Electron. The main process opens a browser window and at that point each process is sandboxed from the other process. Communication between windows and the main process happens through IPC messaging, if you haven't heard of IPC it's short for inter-process communication. Messages can be sent sync of async, but as with all JavaScript you're blocking the event loop when doing synchronous work so it's better to keep all messaging async.
+						</aside>
+					</section>
+
+					<section>
+						<p>Main process vs Renderer process capabilities</p>
+
+						<img
+							src="images/electron-main-process.png"
+							style="
+								border: 0;
+						    display: inline-block;
+						    width: 30%;
+						">
+
+						<img
+							src="images/electron-renderer-process.png"
+							style="
+								border: 0;
+						    display: inline-block;
+						    width: 32.7%;
+						">
+
+						<aside class="notes">
+							These are all of the high level capabilities for the two different types of processes that can fit on this slide. There are a few cut off, but if I made the images any smaller you couldn't read them.
+						</aside>
+					</section>
+
 				</section>
 
 				<section>
-					Security considerations
-				</section>
-
-				<section>
-					Auto-updating applications
+					<p>The Ecosystem of Electron Tools</p>
 				</section>
 
 				<section>
@@ -217,7 +246,13 @@
 					</section>
 				</section>
 
-
+				<section>
+					<h2>Questions?</h2>
+					<br><br><br>
+					<p>Aaron Ackerman</p>
+					<p>twitter.com/_aaronackerman_</p>
+					<p>github.com/aackerman</p>
+				</section>
 			</div>
 		</div>
 
