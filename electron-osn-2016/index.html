@@ -38,7 +38,7 @@
 
 						You can find me on twitter and github at the addresses on these slides.
 
-						I'm here today because I wanted to share with everybody here my experiences working with electron and shipping a product. I recently left Code 42, but while I was there I spent several months building and shipping a product through its initial release and two subsequent releases over the course of a year.
+						I'm here today because I wanted to share with everybody here my experiences working with electron and shipping a product. I recently left Code 42, but while I was there I spent several months building and shipping a product through its initial and subsequent releases over the course of a year.
 					</aside>
 				</section>
 
@@ -78,19 +78,33 @@
 
 						But I want to give these other projects some credit as viable choices for cross-platform desktop applications because they are being used by some great companies.
 
-						`node-webkit` came first and paved the way for Electron, it's backed Intel.
+						`node-webkit` came first and paved the way for Electron, it's backed Intel. There are a few dozen projects on the page for `node-webkit` but none that we're notable enough that I personally knew them by name or by company.
 
 						If you've ever played any games from Blizzard like World of Warcraft, Diablo, StarCraft or Hearthstone, the battle.net app that launches and handles updates for all of their games uses Chromium embedded framework to display views.
 
-						If you've ever played League of Legends, their game client launcher was written in Adobe AIR.
+						If you've ever played League of Legends, their game client launcher is written in Adobe AIR.
 
-						I looked up apps that are using Qt and I was surprised to fine that the Maya product from Autodesk, which if you're unfamiliar is used to create 3d models for movies, games, and other media uses Qt. And the Tesla Model S in-car UI also uses Qt.
+						Qt is a library for C and C++ applications for creating user interfaces. I looked up apps that are using Qt and I was surprised to fine that the Maya product from Autodesk, which if you're unfamiliar is used to create 3d models for movies, games, and other media is built using Qt. The Tesla Model S in-car UI also uses Qt.
 
-						As far as Java is concerned I'm sure you've heard of Eclipse. IntelliJ is also written in Java. And when I worked at Code42, the original CrashPlan desktop client was written as a cross platform desktop application in Java.
+						As far as Java is concerned I'm sure you've heard of Eclipse. IntelliJ is also written in Java. And when I worked at Code42, the original CrashPlan desktop client was written as a cross platform desktop application in Java. There are probably countless other desktop applications using Java.
 
-						Other options do exist. If you choose to create a desktop application I'm sure you'll weigh the different options and it will depend on the expertise of the team. A team of Java engineers might choose to use Java. A team of C++ engineers might choose to use Qt or CEF. But if you have any experience with JavaScript I would bet on Electron.
+						Options do exist. If you choose to create a desktop application I'm sure you'll weigh the different options and it will depend on the expertise of the team. A team of Java engineers might choose to use Java. A team of C++ engineers might choose to use Qt or CEF. But if you have any experience with JavaScript I would bet on Electron.
 
-						I did just that when I was at Code 42. Code 42 had an initiative to rewrite the CrashPlan desktop client using web technology. At the start of 2015 I worked on a small team, I weighed the options and I made the recommendation to senior engineering leadership to go with Electron. And that's what the company decided to use to create the interface to their flagship product. At the time I left Code 42 we had shipped three versions of the new desktop client to our enterprise customers.
+						I did just that when I was at Code 42. Code 42 had an initiative to rewrite the CrashPlan desktop client using web technology. At the start of 2015 I worked on a small team, I weighed the options and I made the recommendation to engineering leadership at Code 42 to go with Electron. And that's what the company decided to use to create the interface to their flagship product. At the time I left Code 42 we had shipped the initial version along with few subsequent feature releases of the new desktop client to our enterprise customers.
+					</aside>
+				</section>
+
+				<section>
+					<p>Supported platforms</p>
+
+					<ul>
+						<li>OSX (>= 10.9)</li>
+						<li>Windows (Windows 7 / Server 2008 R2 or higher)</li>
+						<li>Linux (Ubuntu 12.04+, Fedora 21+, Debian 8+)</li>
+					</ul>
+
+					<aside class="notes">
+						Platform support is pretty good, although there was disparate information about Mac. One doc said 10.8 another said 10.9. But even 10.9 is about three years old and upgrades are free.
 					</aside>
 				</section>
 
@@ -135,17 +149,26 @@
 					<p>Challenges</p>
 
 					<ul>
-						<li>Missing APIs<li>
-						<li>Cross-platform testing<li>
+						<li>Missing APIs</li>
+						<li>Cross-platform testing</li>
 						<li>Platform specific bugs</li>
+						<li>Security Concerns</li>
 					</ul>
 
 					<aside class="notes">
+						There are challenges with Electron, like all software it is incomplete and imperfect. I want to say before this next section that overall my intention is to give Electron a glowing review.
+
 						When I was building on Electron I was working with version 0.32 or something. I needed a way to only allow one instance of my application to be running at a time. Today that's a relatively easy task. Electron provides an API for that `app.makeSingleInstance`. But at the time I had to read through the docs, read through issues, figure out if it was provided and eventually write it myself. I actually cribbed most of the implementation from the Atom Editor but my point is, it's likely you will have to roll up your sleeves and get down with some native code.
 
-						Cross-platform testing can be challenging depending on your organization. If you are in an organization that runs its own test infrastructure, it may be a challenge to run tests on all the platforms you want to support. The team running infrastructure may have to support Windows8, Windows10, OSX, and Linux desktop. That's quite a non-trivial amount of overhead. If you're in a more progressive organization, you may be able to look at the Electron docs, and get Travis CI, Circle CI, and AppVeyor working immediately for every platform you need to support. So there's a spectrum there and it's depends on your company. You might also be able to say, all the features are the same on all platforms only test on linux and let your users create support tickets. As always, there are tradeoffs to consider.
+						Cross-platform testing can be challenging depending on your organization. If you are in an organization that runs its own test infrastructure, it may be a challenge to run tests on all the platforms you want to support. You might be asking the team running infrastructure to support Windows8, Windows10, OSX, and Linux desktop. That's quite a non-trivial amount of overhead. If you're in a more progressive organization, you may be able to look at the Electron docs, and get Travis CI, Circle CI, and/or AppVeyor working immediately for every platform you need to support. So there's a spectrum there and it's depends on your company. You might also be able to say, all the features are the same on all platforms only test on linux and let your users create support tickets. As always, there are tradeoffs to consider.
 
-						I've also run into a few platform specific bugs. When the bug was filed it was often something like, 'Sometimes this happens on Windows.' In another case we ran into a bug where the application menu on OSX could become unresponsive in some situations until you clicked out of the application into another application and then clicked back. I checked through the application code, I looked through the electron code, and eventually tracked this down to a bug in OSX itself. And we submitted a patch upstream to Electron to work around the issue. So even when your code is fine, Electron's code is fine, you might run into problems with the OS.
+						I've also run into a few platform specific bugs. When the bug was filed it was often something like, 'Sometimes this happens on Windows.'
+
+						In one case we had a menubar icon on OSX that would open a window to display and it had background transparency. In rare, seemingly unreproducible cases, when the window was opened the portions that were intended to be transparent were completely white. The solution for us was to remove the transparency and work around that specific issue.
+
+						In another case we ran into a bug where the application menu on OSX could become unresponsive in some situations until you clicked out of the application into another application and then clicked back. I checked through the application code, I looked through the electron code, and eventually tracked this down to a bug in OSX itself. And we submitted a patch upstream to Electron to work around the issue. So even when your code is fine, Electron's code is fine, you might run into problems with the OS.
+
+						As far as security is concerned it's important to do right by your consumers. The Electron docs have a great article about security and the issues that arise with opting out of security that is provided by default. Security is even more important in Electron because a cross-site scripting vulnerability could allow an attacker take over your users computer. It's also necessary to be mindful of the security of chromium itself. Electron updates its dependent components in good time, but some security concerns should be address in hours, and not in terms of days or weeks. There is that aspect to consider if you are extremely security conscious.
 					</aside>
 				</section>
 
@@ -194,11 +217,7 @@
 					</section>
 				</section>
 
-				<section>
-					Supported platforms
 
-					OSX (>= 10.9), Windows (Windows 7 / Server 2008 R2 or higher), Linux (Ubuntu 12.04)
-				</section>
 			</div>
 		</div>
 
