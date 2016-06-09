@@ -189,6 +189,12 @@
 
 						<aside class="notes">
 							Electron employs a very similar architecture that you see in Chrome desktop. One master process is a controller for several other processes. The main process runs in the background and doesn't have any visuals. The job of the main process is to control the lifecycle of the application, display windows, display menus, and handle events dispatched from Electron. The main process opens a browser window and at that point each process is sandboxed from the other process. Communication between windows and the main process happens through IPC messaging, if you haven't heard of IPC it's short for inter-process communication. Messages can be sent sync of async, but as with all JavaScript you're blocking the event loop when doing synchronous work so it's better to keep all messaging async.
+
+							Understanding this architecture is crucial to working within it. Because the main process and each visual window are seperate. They don't have access to shared memory.
+
+							A single threaded application is the easiest to work with, a multi-threaded application is arguably harder to work with, and a multi-process application is arguably harder still.
+
+							If you make a request in one window you can't cache the results between other windows. If you happen to want to display similar data between two windows, say a main application window and a secondary window controlled by clicking on the menubar, it's not possible to share the data and it's possible for the data to be out of sync. So it may be necessary for some applications to have more logic in the main process and dispatch messages to each browser window.
 						</aside>
 					</section>
 
@@ -213,36 +219,82 @@
 
 						<aside class="notes">
 							These are all of the high level capabilities for the two different types of processes that can fit on this slide. There are a few cut off, but if I made the images any smaller you couldn't read them.
+
+							The main process has more access to electron APIs because it often makes sense conceptually at the application level. A single window shouldn't care directly interact with displaying menus. That should be the responsibility of the main process. And the main process doesn't need to care are the `desktopCapturer` API for taking screenshots because it doesn't even have visuals. Each type of process has it's own conceptual responsibilities and can use IPC messaging to communicate.
 						</aside>
 					</section>
 
 				</section>
 
 				<section>
-					<p>The Ecosystem of Electron Tools</p>
-				</section>
-
-				<section>
 					<section>
-						Ecosystem of tools
+						<p>The Ecosystem of Electron Tools</p>
 					</section>
 
 					<section>
-						electron-prebuilt
+						<p>electron-quickstart</p>
+
+						<aside class="notes">
+							If you've never used Electron before this is where to start. It's a gentle intro and like I stated earlier it takes less 5 minutes and about 4 commands to get it running. Assuming you have git and node already installed.
+						</aside>
 					</section>
 
 					<section>
-						electron-packager
+						<p>electron-api-demos</p>
+
+						<aside class="notes">
+							The Electron API demos project is an application built with Electron the demos, documents, and discusses uses of Electron APIs in an interactive way. If you are getting started or are interested in using Electron is it well worth a look.
+						</aside>
 					</section>
 
 					<section>
-						Devtron
-						<img src="images/devtron.png">
+						<p>electron-packager</p>
+
+						<aside class="notes">
+							Electron packager does what says. I packages Electron applications. And it can do this cross platform in some capacity. Electron packager allows you to package for OSX, Windows and Linux from any of those operating systems. But for really deploying there are some caveats, like OSX .app packages can only be codesigned on OSX. Or the icon is embedded into the .exe file for Windows and requires a different tool to edit.
+						</aside>
 					</section>
 
 					<section>
-						Spectron
-						<img src="images/spectron.png">
+						<p>electron-rebuild</p>
+
+						<aside class="notes">
+							Electron rebuild is important for working with native modules. When you need native modules in your Electron application they need to be compiled with the header provided by the version of Electron you intend to ship instead of the headers provided by Node running on your development machine or the build machine. Electron rebuild makes that process very easy.
+						</aside>
+					</section>
+
+					<section>
+						<p>electron-prebuilt</p>
+
+						<aside class="notes">
+							Electron prebuilt is a node module that installs a prebuilt version of electron instead of compiling Electron or navigating to Electron on github and clicking on the latest release.
+						</aside>
+					</section>
+
+					<section>
+						<p>Devtron</p>
+						<img src="images/devtron.png" style="border:0">
+
+						<aside class="notes">
+							Devtron is an extension to Electron that would show up just like other browser extensions like the react, redux, or angular extensions. It came along with the 1.0 release of Electron so I haven't had a chance to use it yet but it looks amazing. It shows you information about your require dependency graph, open event listeners, and IPC messaging. So it could be very useful for application debugging.
+						</aside>
+					</section>
+
+					<section>
+						<p>Spectron</p>
+						<img src="images/spectron.png" style="border:0">
+
+						<aside class="notes">
+							Spectron is a tool for testing Electron applications using webdriver/selenium and chromedriver. It's a solution that people can use. During development at Code 42 the team had expertise in Ruby so we decided to use Cucumber and Capybara for testing. The upsides of these libraries are testing the UI completely interactively. The downsides are tests are complex, can be flaky and hard to debug. But I have seen their value and smoke testing application features.
+						</aside>
+					</section>
+
+					<section>
+						<p>All Node.js modules</p>
+
+						<aside class="notes">
+							When developing an Electron application you also have all community node modules available for use including native modules. And this is a huge advantage for creating applications because the JavaScript community thrives in open source.
+						</aside>
 					</section>
 				</section>
 
