@@ -136,7 +136,7 @@ $Keys, $Exact, $All, $Tuple, $Either, $Diff, $Shape
 
 ## Static typing is not a replacement for tests
 
-## `flow-strip-types` vs. flow comments
+## `flow-strip-types` vs. flow comments vs `flow-remove-types`
 
 ## Flow in Babel vs Flow in Node
 
