@@ -74,39 +74,71 @@ And you might be thinking "Why would I want to specify types that sounds like a 
 
 From another perspective a developer that is used to the statically typed languages I listed before like Java or C# you might be thinking. "Yeah, that sounds great sign me up, I love types, having a statically typed language keeps me from making silly mistakes."
 
+[display image of comic argument]
+
 Developers from different backgrounds have different views on static vs dynamic typing. I hope you're here because you have an open mind and you're interested. In my mind, flow is just another tool that allows you to write better code, faster.
-
-## What is Flow?
-
-
 
 ## Using Flow
 
-With front-end code and using flow with Node. Compiling with Babel or using flow comments.
+Let's get into using flow. No matter whether you're writing JavaScript for the server or the browser the first thing you will need to use is a version of the flow binary. The easiest way to do this is to install from npm.
+
+[display image of `npm install --save-dev flow-bin`]
+
+You can also compile from source, or install the latest release from homebrew, or click to download one of the release from the flow repo on github.
+
+Flow is supported on MacOS, Linux, and just recently Windows. So Windows users can use Flow as well.
+
+After installing the flow binary it's necessary for your project to have a `.flowconfig` file even if the file is mostly empty.
+
+[display image of `flow init`]
+
+You can use the `flow init` command for adding flow to a new or existing project.
+
+If you have a significant project or you make extensive use of webpack loaders you might need configuration in your project to handle non-JavaScript file imports and requires. Configuring flow for your project might be the first hurdle you run into, but it can often be overcome quickly. The maintainers have added several configuration options to work with modern JavaScript module compilers such as webpack and browserify.
+
+So you have flow installed and a configuration file created, you're ready to start type-checking JavaScript.
+
+[display image of `flow check`]
+
+Running `flow check` is the easiest way to do that. It will check all of the JavaScript in the current folder. You'll probably see no results initially and that's because flow pushes type-checking to be opt-in. This can help with the feeling of being overwhelmed with warnings and errors for an existing project.
+
+[display image of // @flow pragma]
+
+So flow offers this comment indentifier that tells flow that code in this file should be type-checked.
+
+[display image of `flow check --all`]
+
+It's also possible to type-check all files by adding the dash dash all flag to the `flow check` command.
+
+Let's get into our first example.
+
+[display code the ex1.js in flow-examples]
+
+As you can see we opt-in to using flow by adding `@flow` in a comment at the top of our file. We have a function `foo` that accepts one argument `x` and returns ten `x`. Who ever wrote this must have been one of those 10x developer, don't laugh at that one, that's a bad joke.
+
+This code doesn't have any type annotations yet, but let's see what happens when we run `flow check` on this code.
+
+[display terminal window and run `npm run check:ex1`]
+
+So we can see that flow identified a problem with calling `foo` with 'Hello World'. Flow infered based on the code that we're multiplying the input by 10 and only numbers can be multiplied so the `x` argument should be a number not a string.
+
+[display code the ex2.js in flow-examples]
+
+I've modified the code a for example two. I've added an annotation that the argument `x` should be a number and the return value of `foo` should also be a number and let's take a look at the output we get from flow.
+
+[display terminal window and run `npm run check:ex2`]
+
+Now flow didn't have to do the inference. We codified that `x` should be a number. And flow tells use again that calling `foo` with a string is invalid because `x` should be a number.
 
 ## Implicit typing (inference) vs. Explicit typing (manifest)
 
 ## Structural vs. Nominal Types
 
-## Flow vs TypeScript
-
-TypeScript is a language compiler. It is self-hosted being written entirely in TypeScript itself. Typescript performs the job that Flow and Babel perform in concert.
-
-Flow on the other hand is written in a majority of OCaml and JavaScript.
-
 ## JavaScript Types
 
 ## Flow syntax
 
-## Special Syntax
-
-$Keys, $Exact, $All, $Tuple, $Either, $Diff, $Shape
-
-## Using flow in an existing project
-
 ## Flow with React
-
-## Installing and using flow
 
 ## Built-in types
 
@@ -121,8 +153,6 @@ $Keys, $Exact, $All, $Tuple, $Either, $Diff, $Shape
 ## Language of describing types
 
 ## Typecasts
-
-## Flow pragmas
 
 ## Importing types and type declarations for third-party libs
 
