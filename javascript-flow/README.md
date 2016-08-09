@@ -186,7 +186,7 @@ There is no noticable difference to how flow operates on these two pieces of cod
 
 So those we're some simple examples, but I want to segue for a second and get some terms in your mind. There are many properties of different type systems, but at some point the compiler has to have some definition of types to do it's job. There is implicit typing where the compiler makes inferences about the code, surrounding syntax and usage. And there explicit or manifest typing where the types have to be written out. Flow makes use of type inference to give developers error checking without writing out any types and it can give you better error checking when more types are added.
 
-## Class types and Subtypes
+## Class types
 
 Flow has support for nearly all if not all of the ES2015 specced syntax. Classes, arrow functions, import/export syntax is all supported. Even some syntax that is in the spec process is supported by flow, such as features like the Async/Await keywords and Object Rest/Spread syntax.
 
@@ -195,6 +195,39 @@ Let's take a look at a simple class
 [display code from 'rect.js' file]
 
 We have a class called Rect, that accepts width and height as number parameters to the constructor and it has a `getArea` method to return the area of the rectangle.
+
+[display code for ex5.js file]
+
+If we switch over to example 5, we import the Rect class create a method called getArea to get the area of a Rectangle create and instance of Rect and log out the area of the instance.
+
+[display terminal window and run `npm run check:ex5`]
+
+So this type checks with flow just fine, let's run the code
+
+[display terminal window and run `npm run ex5`]
+
+And we get the output area of 10.
+
+## Subtypes
+
+If we take a look at the next example
+
+[display code for ex6.js file]
+
+We import Rect and extend the Rect class to create the Square class. Square just has one number parameter and inherits the getArea method from Rect. After that we define a getArea method that accepts a Square and outputs the areas. We create an instance of each class and log the areas.
+
+Let's go ahead and run this file to see the output before we do any type checking.
+
+[display terminal window and run `npm run ex6`]
+
+As we can see the code all ran just fine.
+But when we type-check this code with flow we'll run into an error.
+
+[display terminal window and run `npm run check:ex6`]
+
+A Rectangle is not a Square. But the Rect class and Square class both have the `getArea` method so you might be wondering why flow is complaining.
+
+It has to do with the way types of resolved in Flow. For classes specifically where inheritance is involved it is an optimization to handle the types nominally or by name.
 
 ## Interface types
 
