@@ -80,6 +80,8 @@ Developers from different backgrounds have different views on static vs dynamic 
 
 ## Using Flow
 
+[display image of "Using Flow"]
+
 Let's get into using flow. No matter whether you're writing JavaScript for the server or the browser the first thing you will need to use is a version of the flow binary. The easiest way to do this is to install from npm.
 
 [display image of `npm install --save-dev flow-bin`]
@@ -130,7 +132,59 @@ I've modified the code a for example two. I've added an annotation that the argu
 
 Now flow didn't have to do the inference. We codified that `x` should be a number. And flow tells use again that calling `foo` with a string is invalid because `x` should be a number.
 
+## Running code with flow types
+
+[display image of "Running Code with Flow Types"]
+
+At this point you may be wondering about the flow syntax and actually running that code in my first two examples. Let's try to run example 2 that contains type annotations
+
+[display terminal window and run `npm run ex2`]
+
+As you can see, the script errored on an expected token. Writing flow isn't standardized syntax so the type annotations need to be removed from the code to run. There are a few options options for running code with flow type annotations.
+
+[display options for stripping types]
+
+* Using Babel to strip types with the `flow-strip-types` plugin.
+* Using a module like `flow-remove-types` to remove types
+* Using flow comments
+
+Let's look at the remove types and comments options.
+
+[display code for ex3.js]
+
+In example 3 we've adjusted this script to output the value returned from `foo` and we can run `flow check` to figure out if this script is type-safe.
+
+[display terminal window and run `npm run check:ex3`]
+
+Now that we know example 3 is type safe let's run the example.
+
+[display terminal window and run `npm run ex3`]
+
+[highlight the script that node eval'd]
+
+For this example I passed a string for node to eval. It's requires the `flow-remove-types` module require hook. That allows for zero configuration stripping of types at runtime instead of using a build step, this is done through a just in time transformation when code is included with require. This might be OK in development or if your project is small. For larger projects I recommend using a build step using `flow-remove-types` module or the Babel plugin for stripping types.
+
+One piece of good news is that if you're using Babel with the React preset you can use flow with zero changes to your configuration.
+
+So stripping types with or without a build step is one option for running code with flow types. The other option is using flow comments. If you choose the option of using flow comments, there's a lot more typing, and typing block comments inline with your code is pretty ugly, but you're always writing valid JavaScript. Let's look at what that looks like.
+
+[display code for ex4.js]
+
+As you can see the two type annotations are commented, and we've gone back to calling the `foo` method with "Hello World".
+
+[display terminal window and run `npm run check:ex4`]
+
+And when we check this with flow, the output is the same as Example 2. In fact, we can look at the two scripts side-by-side to see the difference.
+
+[display code for ex2.js and ex4.js]
+
+There is no noticable difference to how flow operates on these two pieces of code. You get the same type checks with comments and you don't have to strip anything out, until your minification step removes all comments.
+
 ## Implicit typing (inference) vs. Explicit typing (manifest)
+
+[display image of implicit vs explicit typing, ex1 vs ex3]
+
+So those we're some simple examples, but I want to segue for a second and get some terms in your mind. There are many properties of different type systems, but at some point the compiler has to have some definition of types to do it's job. There is implicit typing where the compiler makes inferences about the code, surrounding syntax and usage. And there explicit or manifest typing where the types have to be written out. Flow makes use of type inference to give developers error checking without writing out any types and it can give you better error checking when more types are added.
 
 ## Structural vs. Nominal Types
 
@@ -165,8 +219,6 @@ Now flow didn't have to do the inference. We codified that `x` should be a numbe
 ## Benefits of static typing
 
 ## Static typing is not a replacement for tests
-
-## `flow-strip-types` vs. flow comments vs `flow-remove-types`
 
 ## Flow in Babel vs Flow in Node
 

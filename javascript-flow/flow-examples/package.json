@@ -1,31 +1,32 @@
 {
-  "name": "examples",
+  "name": "flow-examples",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "check:ex1": "cat ex1.js | flow check-contents || true",
-    "ex1": "node ex1.js",
+    "ex1": "node ex1.js || true",
     "check:ex2": "cat ex2.js | flow check-contents || true",
-    "ex2": "node ex2.js",
+    "ex2": "node ex2.js || true",
     "check:ex3": "cat ex3.js | flow check-contents || true",
-    "ex3": "node ex2.js",
+    "ex3": "node -e 'require(\"flow-remove-types/register\"); require(\"./ex3.js\")'",
     "check:ex4": "cat ex4.js | flow check-contents || true",
-    "ex4": "node ex2.js",
+    "ex4": "node ex4.js || true",
     "check:ex5": "cat ex5.js | flow check-contents || true",
-    "ex5": "node ex2.js",
+    "ex5": "node ex5.js || true",
     "check:ex6": "cat ex6.js | flow check-contents || true",
-    "ex6": "node ex2.js",
+    "ex6": "node ex6.js || true",
     "check:ex7": "cat ex7.js | flow check-contents || true",
-    "ex7": "node ex2.js",
+    "ex7": "node ex7.js || true",
     "check:ex8": "cat ex8.js | flow check-contents || true",
-    "ex8": "node ex2.js",
+    "ex8": "node ex8.js || true",
     "check:ex9": "cat ex9.js | flow check-contents || true",
-    "ex9": "node ex2.js",
+    "ex9": "node ex9.js || true",
     "check:ex10": "cat ex10.js | flow check-contents true",
-    "ex10": "node ex2.js"
+    "ex10": "node ex10.js || true"
   },
   "devDependencies": {
-    "flow-bin": "^0.30.0"
+    "flow-bin": "^0.30.0",
+    "flow-remove-types": "^1.0.2"
   }
 }
