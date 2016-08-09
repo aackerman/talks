@@ -186,17 +186,31 @@ There is no noticable difference to how flow operates on these two pieces of cod
 
 So those we're some simple examples, but I want to segue for a second and get some terms in your mind. There are many properties of different type systems, but at some point the compiler has to have some definition of types to do it's job. There is implicit typing where the compiler makes inferences about the code, surrounding syntax and usage. And there explicit or manifest typing where the types have to be written out. Flow makes use of type inference to give developers error checking without writing out any types and it can give you better error checking when more types are added.
 
+## Class types and Subtypes
+
+Flow has support for nearly all if not all of the ES2015 specced syntax. Classes, arrow functions, import/export syntax is all supported. Even some syntax that is in the spec process is supported by flow, such as features like the Async/Await keywords and Object Rest/Spread syntax.
+
+Let's take a look at a simple class
+
+[display code from 'rect.js' file]
+
+We have a class called Rect, that accepts width and height as number parameters to the constructor and it has a `getArea` method to return the area of the rectangle.
+
+## Interface types
+
+## Types across module boundaries
+
+## Learning to use flow
+
+Read the docs, read the built-in types
+
 ## Structural vs. Nominal Types
 
 ## JavaScript Types
 
-## Flow syntax
-
 ## Flow with React
 
 ## Built-in types
-
-## Subtypes
 
 ## Generic Types
 
@@ -214,12 +228,6 @@ So those we're some simple examples, but I want to segue for a second and get so
 
 ## Built-in type declarations
 
-### Static types in a small project vs large project
-
 ## Benefits of static typing
 
 ## Static typing is not a replacement for tests
-
-## Flow in Babel vs Flow in Node
-
-## Integration with webpack features
