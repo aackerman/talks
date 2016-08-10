@@ -8,7 +8,7 @@ export type Submission = {
   address: {
     line1: string,
     line2: string,
-    region: string
+    state: string
   }
 }
 
