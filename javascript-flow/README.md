@@ -18,9 +18,13 @@ I work at a company call YA, formerly Young America, if you've ever sent in a pa
 
 You can find me on Twitter, Github at these places. I tweet about only really important stuff, like how hot or cold it is in Minnesota.
 
+[display image of Wunderground temps for Minneapolis]
+
 By the way, today the high temp for today will be.
 
-[display image of Wunderground temps for Minneapolis]
+[display image asking for questions]
+
+This is a relatively small room, if you have questions, go ahead and raise your hand and ask them. I'll ask for questions at the end but don't force yourself to wait. We're all professionals here but if you don't understand something it's pretty likely that someone else in the room doesn't understand and it will be good for everyone.
 
 ## Learning about types
 
@@ -30,6 +34,8 @@ I grew up about 30 minutes north of here in Coon Rapids. And I went to Coon Rapi
 
 The courses we're teaching C++, probably because that was what the teacher knew.
 
+If you haven't seen this dragon before, and you think what does a dragon have to do with programming, this is an image for the Clang compiler. Which is the default C and C++ compiler that is pre-installed on MacOS.
+
 I learned about integers, strings, for loops, if/else branching, and displaying words in the command prompt. I had no understanding of what a compiler was, how to handle memory, and I had no understanding of algorithms. So I didn't know a lot about types or why the compiler complained but I could add numbers and display words on a screen. I knew my program needed import iostream.h and return the value zero but I didn't know why.
 
 [display image of black jack]
@@ -38,17 +44,15 @@ The final project I made was text version of the game black jack. And I remember
 
 [display image of c++ struct]
 
-In the last week of the class the teacher tried to explain structs and pointers and I don't think anybody in the class really understood. So I've come a long way from there but, I've been writing software for a relatively short period of time, my first job was about six years ago.
+In the last week of the class the teacher tried to explain structs and pointers and I don't think anybody in the class really understood. Those were my first real experiences with programming back in high school and I didn't really understand the tools so I didn't end up doing any programming at home.
 
 [display image of PHP and JavaScript]
 
-My first job was a Junior software developer at an agency, writing PHP and JavaScript for clients. I remember my first interview very vividly. I showed the interviewers this automated dice-roller I had written because I was really into playing Dungeons and Dragons with my friends at that point in time. So I got through the interview and I was hired at an absurdly low salary for a Junior developer.
-
-[display image of a small stack of cash]
-
-I'm here today to talk about flow and static type-checking in JavaScript.
+I worked with PHP and JavaScript while I was in college and that led me to my first job. And I have been working in JavaScript along with a variety of other languages ever since.
 
 [display image of Flow logo]
+
+I'm here today to talk about flow and static type-checking in JavaScript.
 
 Flow is described as "A static type checker for javascript". For languages that support static type checking, it means that all of the type information can be known at compile-time or before any of the code is actually run or executed. Dynamically typed languages on the other hand determine type safety at runtime.
 
@@ -62,11 +66,11 @@ Flow is described as "A static type checker for javascript". For languages that 
     * Python
     * Ruby
 
-Here are a few examples of statically and dynamically typed languages just of reference. And flow is a tool that allows its users to have static type checking and a dynamically typed language.
+Here are a few examples of statically and dynamically typed languages just of reference.
 
 ## What is the point of static typing?
 
-And the first question you might ask is "Why?"
+And the first question you might ask is "Why?", "What is the point of static typing?"
 
 [display image of the question "Why?"]
 
@@ -104,7 +108,7 @@ So you have flow installed and a configuration file created, you're ready to sta
 
 Running `flow check` is the easiest way to do that. It will check all of the JavaScript in the current folder. You'll probably see no results initially and that's because flow pushes type-checking to be opt-in. This can help with the feeling of being overwhelmed with warnings and errors for an existing project.
 
-[display image of // @flow pragma]
+[display image of `// @flow` pragma]
 
 So flow offers this comment indentifier that tells flow that code in this file should be type-checked.
 
@@ -194,7 +198,7 @@ Flow makes use of inference to give developers error checking without writing ou
 
 [display slides with syntax flow supports]
 
-Flow has support for nearly all if not all of the ES2015 specced syntax. Classes, arrow functions, import/export syntax is all supported. Even some syntax that is in the spec process is supported by flow, such as features like the Async/Await keywords and Object Rest/Spread syntax.
+Flow has support for nearly all if not all of the ES2015 specced syntax. Classes, arrow functions, import/export syntax is all supported. Even some syntax that is in the spec process is supported by flow, such as features like the Async/Await keywords and Object Rest/Spread syntax. So unless it's syntax is very early in the spec process, it's probably supported by flow and you won't run into errors.
 
 Let's take a look at a simple class
 
@@ -322,12 +326,22 @@ So now we can see flow highlighting several areas that are affecting coverage. A
 
 ## Working with code you don't own
 
-[display title slide]
+[display title slide "Working with code you don't own"]
 
-It's a reality to be working with third-party code that you didn't write and probably doesn't have types exported.
+It's a reality to be working with third-party code that you didn't write and probably doesn't have types exported. The community for having types in JavaScript is small compared to the overall size of the entire community. So a lot of libraries won't have type definitions.
 
-## Learning about flow
+The `flow-typed` repo is the spot for community curated type definitions for flow.
 
-Read the docs, read the built-in types
+## Tooling support
 
-## Flow with React
+* https://github.com/flowtype/vim-flow
+* https://github.com/flowtype/flow-for-vscode
+* https://github.com/facebook/nuclide
+
+## Built-in types
+
+## Learning more about flow
+
+There's a lot about flow that I wasn't able to get to today. I hope I was able to give you a better understanding of what flow is all about. If you have familiarity with TypeScript I'm sure you could draw a lot of parallels.
+
+To learn more about flow I would push you to read the documentation. It's a good place to get started, but it does leave you with a lot of questions. The flow team is active on twitter so if you have questions you can likely get them answered pretty quickly.

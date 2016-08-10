@@ -20,12 +20,221 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style>
+			.reveal section img {
+				border: none;
+				margin: 0;
+				box-shadow: none;
+				background: none;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<img src="images/flow-logo.png" />
+				</section>
+
+				<section>
+					<img src="images/a-a-ron.jpg" />
+				</section>
+
+				<section style="text-align: left;">
+					<h2 style="text-transform: none">Welcome!</h2>
+					<p style="font-size: 60px">
+						<img
+							class="no-border-img"
+							style="margin-right: -15px;"
+							height="40"
+							src="images/twitter-bird.png">
+						<span>/</span><span>_aaronackerman_</span>
+					</p>
+				</section>
+
+				<section>
+					<img src="images/temps.png" style="width: 50%" />
+				</section>
+
+				<section>
+					<h2 style="text-transform: none">Ask questions!</h2>
+				</section>
+
+				<section>
+					<img src="images/clang.svg" style="width: 50%" />
+				</section>
+
+				<section>
+					<img src="images/blackjack.jpg" style="width: 50%" />
+				</section>
+
+				<section>
+					<img src="images/struct.png" style="width: 50%" />
+				</section>
+
+				<section>
+					<img src="images/php-logo.png" style="width: 30%; margin-right: 20px; position: relative; top: -36px;" />
+					<img src="images/js.jpg" style="width: 25%" />
+				</section>
+
+				<section>
+					<img src="images/flow-logo.png" />
+				</section>
+
+				<section style="text-align: left">
+					<p>Statically typed</p>
+					<ul>
+						<li>Java</li>
+						<li>C#</li>
+						<li>Go</li>
+					</ul>
+					<p>Dynamically typed</p>
+					<ul>
+						<li>JavaScript</li>
+						<li>Ruby</li>
+						<li>Python</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1 style="text-transform: none;">Why?</h1>
+				</section>
+
+				<section>
+					<img src="images/argument-cartoon.jpg" />
+				</section>
+
+				<section>
+					<h1 style="text-transform: none;">Using Flow</h1>
+				</section>
+
+				<section>
+					<code>npm install --save-dev flow-bin</code>
+				</section>
+
+				<section>
+					<code>flow init</code>
+				</section>
+
+				<section>
+					<code>flow check</code>
+				</section>
+
+				<section>
+					<code>// @flow</code>
+				</section>
+
+				<section>
+					<code>flow check --all</code>
+				</section>
+
+				<section>
+					<p>Example 1</p>
+					<p>Basic type errors with inference</p>
+				</section>
+
+				<section>
+					<p>Example 2</p>
+					<p>Basic type errors with argument types</p>
+				</section>
+
+				<section>
+					<p>Running Code with Flow types</p>
+				</section>
+
+				<section>
+					<p>Options for stripping types</p>
+					<ul>
+						<li><code>flow-strip-types</code> Babel plugin</li>
+						<li><code>flow-remove-types</code> npm module</li>
+						<li>flow comments</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Example 3</p>
+					<p>Stripping out types with <code>flow-remove-types</code></p>
+				</section>
+
+				<section>
+					<p>Example 4</p>
+					<p>Using flow comments</p>
+				</section>
+
+				<section>
+					<p>Implicit vs Explicit typing</p>
+				</section>
+
+				<section>
+					<p>Flow supported syntax examples</p>
+					<ul>
+						<li>import/export module syntax</li>
+						<li>arrow function</li>
+						<li>async/await</li>
+						<li>Object rest/spread</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>Example 5</p>
+					<p>Class types</p>
+				</section>
+
+				<section>
+					<p>Example 6</p>
+					<p>Subclass types and inheritance</p>
+				</section>
+
+				<section>
+					<p>Example 7</p>
+					<p>Interface types</p>
+				</section>
+
+				<section>
+					<p>Structural vs. Nominal Types</p>
+				</section>
+
+				<section>
+					<p>Example 8</p>
+					<p>Object types</p>
+				</section>
+
+				<section>
+					<p>Flow coverage</p>
+				</section>
+
+				<section>
+					<p>Working with code you don't own</p>
+				</section>
+
+				<section>
+					<p>flow-typed repo</p>
+				</section>
+
+				<section>
+					<p>Tooling support</p>
+				</section>
+
+				<section>
+					<p>Built-in types</p>
+				</section>
+
+				<section>
+					<p>Learning more about flow</p>
+				</section>
+
+				<section style="text-align: left;">
+					<h2 style="text-transform: none">Thanks!</h2>
+					<p style="font-size: 60px">
+						<img
+							class="no-border-img"
+							style="margin-right: -15px;"
+							height="40"
+							src="images/twitter-bird.png">
+						<span>/</span><span>_aaronackerman_</span>
+					</p><br>
+					<p>Questions?</p>
+				</section>
 			</div>
 		</div>
 
