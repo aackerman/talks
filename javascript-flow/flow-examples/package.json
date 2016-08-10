@@ -22,6 +22,7 @@
     "check:ex7": "cat ex7.js | flow check-contents || true",
     "ex7": "node -e 'require(\"flow-remove-types/register\"); require(\"./ex7.js\")'",
     "check:ex8": "cat ex8.js | flow check-contents || true",
+    "coverage:ex8": "flow coverage ex8.js || true",
     "ex8": "node ex8.js || true",
     "check:ex9": "cat ex9.js | flow check-contents || true",
     "ex9": "node ex9.js || true",

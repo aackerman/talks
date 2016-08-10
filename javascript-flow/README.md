@@ -6,9 +6,11 @@ JavaScript Flow
 
 ## Introduction
 
-I'm Aaron. If you've seen Key and Peele, when you hear Aaron, you might think A-a-ron. I get it often and I think it's great, so if you see me after the talk and you want to chat. You can break the ice with something like "You done messed up A-A-RON".
+I'm Aaron. If you've seen Key and Peele, when you hear Aaron, you might think A-a-ron.
 
 [display image of key and peele a-a-ron]
+
+So if you see me after the talk and you want to chat. You can break the ice with something like "You done messed up A-A-RON".
 
 I work at a company call YA, formerly Young America, if you've ever sent in a paper rebate, you may remember sending it to Norwood Young America, Minnesota. So I work on a platform for digital marketing that includes rebates as part of the product line.
 
@@ -21,8 +23,6 @@ By the way, today the high temp for today will be.
 [display image of Wunderground temps for Minneapolis]
 
 ## Learning about types
-
-Programming is hard, right? We're in the beginner track, so I'm straying from the main topic of flow to talk a little bit about my beginner experiences with programming.
 
 I grew up about 30 minutes north of here in Coon Rapids. And I went to Coon Rapids Senior High. The school had computer labs and actually offered a couple programming courses. I was really interested in computers but my parents didn't really 'get' computers. So I took all of the computer classes that the school offered.
 
@@ -184,9 +184,15 @@ There is no noticable difference to how flow operates on these two pieces of cod
 
 [display image of implicit vs explicit typing, ex1 vs ex3]
 
-So those we're some simple examples, but I want to segue for a second and get some terms in your mind. There are many properties of different type systems, but at some point the compiler has to have some definition of types to do it's job. There is implicit typing where the compiler makes inferences about the code, surrounding syntax and usage. And there explicit or manifest typing where the types have to be written out. Flow makes use of type inference to give developers error checking without writing out any types and it can give you better error checking when more types are added.
+So those we're some simple examples, but I want to segue for a second and get some terms in your mind. There are many properties of different type systems, but at some point the compiler has to define types for variables. Many type systems use implicit typing where the compiler makes inferences about the code, its surrounding syntax and usage. You see this in JavaScript, Ruby, and Python. In other type systems there is explicit or manifest typing where the types have to be written out to satisfy the compiler before the  code will run. You can see this in languages like Java, C#, and Go.
+
+It's also that case that type systems will employ a little bit of both. Inference where the types are implied and manifest where the types are written for more clarity.
+
+Flow makes use of inference to give developers error checking without writing out any types and it can often give you better error checking when more types are added.
 
 ## Class types
+
+[display slides with syntax flow supports]
 
 Flow has support for nearly all if not all of the ES2015 specced syntax. Classes, arrow functions, import/export syntax is all supported. Even some syntax that is in the spec process is supported by flow, such as features like the Async/Await keywords and Object Rest/Spread syntax.
 
@@ -291,16 +297,37 @@ Flow says we don't have a state field anymore. So that's pretty cool. We can cha
 
 ## Flow coverage
 
+It's often the case that flow can understand the majority of your programs by adding a minimal amount of types. As a baseline you want your program to have no type errors. After that flow offers a coverage tool that will allow you to fill in the rest of the types to get to 100% coverage.
+
+Let's go back and look at my example about fetching rebate submissions.
+
+[display code for ex8.js file]
+
+There are two variables here, the raw response object from fetch and the array of submissions after parsing the response from JSON. And I've only annotated one of the variables with a type.
+
+Let's take out that annotation. Check for errors and then check for coverage.
+
+[display terminal window and run `npm run check:ex8`]
+
+So there were no errors, we didn't actually need that annotation to fix any type errors.
+
+[display terminal window and run `npm run coverage:ex8`]
+
+So flow reports that we have about 66 percent coverage. So not having full coverage tells us that we're missing something. If we adjust the configuration for getting coverage we can add the color flag. Let's look at that.
+
+[add the color flag to the coverage report]
+[display terminal window and run `npm run coverage:ex8`]
+
+So now we can see flow highlighting several areas that are affecting coverage. And if we add back the type annotation we can get to full coverage on this script. So the coverage report can be a very useful tool for identifying areas where useful types can be added.
+
 ## Working with code you don't own
+
+[display title slide]
+
+It's a reality to be working with third-party code that you didn't write and probably doesn't have types exported.
 
 ## Learning about flow
 
 Read the docs, read the built-in types
 
-## JavaScript Types
-
 ## Flow with React
-
-## Language of describing types
-
-## Flow-typed community repo
