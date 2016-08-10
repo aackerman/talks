@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "coverage": "flow coverage || true",
     "check": "flow check || true",
     "check:rect": "cat rect.js | flow check-contents || true",
     "check:ex1": "cat ex1.js | flow check-contents || true",
@@ -19,7 +20,7 @@
     "check:ex6": "cat ex6.js | flow check-contents || true",
     "ex6": "node -e 'require(\"flow-remove-types/register\"); require(\"./ex6.js\")'",
     "check:ex7": "cat ex7.js | flow check-contents || true",
-    "ex7": "node ex7.js || true",
+    "ex7": "node -e 'require(\"flow-remove-types/register\"); require(\"./ex7.js\")'",
     "check:ex8": "cat ex8.js | flow check-contents || true",
     "ex8": "node ex8.js || true",
     "check:ex9": "cat ex9.js | flow check-contents || true",

@@ -196,9 +196,15 @@ Let's take a look at a simple class
 
 We have a class called Rect, that accepts width and height as number parameters to the constructor and it has a `getArea` method to return the area of the rectangle.
 
+If we switch over to example 5.
+
 [display code for ex5.js file]
 
-If we switch over to example 5, we import the Rect class create a method called getArea to get the area of a Rectangle create and instance of Rect and log out the area of the instance.
+We import the Rect class create a method called getArea to get the area of a Rectangle create and instance of Rect and log out the area of the instance. Let's see how this example type checks.
+
+OK so let's see a quick show of hands. Who would say, yeah that looks right I think it's not going to have any errors.
+
+[poll the audience]
 
 [display terminal window and run `npm run check:ex5`]
 
@@ -225,42 +231,76 @@ But when we type-check this code with flow we'll run into an error.
 
 [display terminal window and run `npm run check:ex6`]
 
-A Rectangle is not a Square. But the Rect class and Square class both have the `getArea` method so you might be wondering why flow is complaining.
+A Rectangle is not a Square. But the Rect class and Square class both have the `getArea` method so you might be wondering why flow is complaining. Both of the objects have the same `getArea` method, so what's the problem.
 
-It has to do with the way types of resolved in Flow. For classes specifically where inheritance is involved it is an optimization to handle the types nominally or by name.
+It has to do with the way types of resolved in Flow. For classes specifically where inheritance is involved the type is checked by name. My specific example was simple, if you think about it a different way we could subclass Square again to create a ColoredSquare that takes a color parameter and has a `getColor` method. If inside the method we used the `getColor` method any super classes would be invalid.
 
 ## Interface types
 
-## Types across module boundaries
+So in the last example we saw that when we specified a sub class as the parameter type passing in a super class was an error for flow. If we only care about using certain methods we can use interface types to allow a method to use several different types.
 
-## Learning to use flow
+Let's take a look at the next example
 
-Read the docs, read the built-in types
+[display code for ex7.js file]
+
+We import Square and Rect, both of them have the same `getArea` method, and define an variable `LikeARect` with an object literal and it has a `getArea` method. Below that we are using flow to define an interface type `ILikeRect` that we use as a parameter type for our new `getArea` method. Now that we're are using an interface I bet everything will be fine, everything will typecheck and run appropriately.
+
+[display terminal window and run `npm run check:ex7`]
+
+So everything checks out
+
+[display terminal window and run `npm run ex7`]
+
+And everything runs correctly. So in the case where you want to be more specific about the structure of an object and not worry about class names it's appropriate to use an interface.
 
 ## Structural vs. Nominal Types
+
+[display image of Structural vs. Nominal]
+
+I've been trying to lightly put some more esoteric terms about types systems in your mind and I have a couple more after talking about how flow handles class types versus interface types.
+
+Type systems where types are compared by their fields and methods are said to be structural.
+
+In the Go programming language interfaces are structural, if an object implements all the methods of the interface correctly it can be used where a variable is typed to be the interface.
+
+Type systems where types are compared strictly by names are said to be nominal. As I said before in flow class types are compared nominally. Interface and object types are compared structurally. I personally don't know the reason for this. I would imagine the performance of comparing by named vs complex structures would be much faster, so the reasons are likely for performance. We would probably have to ask the team that works on flow to get the correct answer.
+
+## Object types
+
+[display slide that says "Object types"]
+
+To me simple object types are the part of flow that I like the most. Especially for data objects that are coming from an API. If I can use the same type definitions with node on the server and in the browser a huge perk. Say a field is renamed in your database, that change propagates to the API and then to the UI. If you have type definitions for that object in place you won't have to hunt down every single location where the field needs to be updated in the UI, flow will tell you.
+
+[display code for ex8.js file]
+
+I work on a platform that handles rebates, and we have consumer submissions. Imagine that this piece of code will be used to fetch and display submissions to user in a platform administration app. For the purposes here we're just going to log out the state where the consumer submitted from.
+
+I've imported the type from a seperate file and I've annotated that the response from the fetch is an array of submissions.
+
+In this case the submission type definition is defined elsewhere and shared between the front-end and the server.
+
+So one team member decides, oh state doesn't actually make a lot of sense for submissions because other countries like Canada have provinces, so let's make it more generic and call the field region.
+
+It's common to say that naming is hard and it is, but I've always found renaming to be harder.
+
+So the database field has to change, part of the API has to change and the type definition has to change. So let's go ahead and change the type definition of the submission. So this person isn't even considering having to change any UI code at this point. But the changes are committed, linting runs, and flow runs. Let's check out what flow has to say.
+
+[display terminal window and run `npm run check:ex8`]
+
+Flow says we don't have a state field anymore. So that's pretty cool. We can change a shared definition of a data object and flow will help us understand all of the cascading changes.
+
+## Flow coverage
+
+## Working with code you don't own
+
+## Learning about flow
+
+Read the docs, read the built-in types
 
 ## JavaScript Types
 
 ## Flow with React
 
-## Built-in types
-
-## Generic Types
-
-## Union Types
-
-## Read/Write-only interfaces
-
 ## Language of describing types
 
-## Typecasts
-
-## Importing types and type declarations for third-party libs
-
 ## Flow-typed community repo
-
-## Built-in type declarations
-
-## Benefits of static typing
-
-## Static typing is not a replacement for tests
