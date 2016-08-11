@@ -8,9 +8,7 @@ I'm Aaron. If you've seen Key and Peele, when you hear Aaron, you might think A-
 
 [display image of key and peele a-a-ron]
 
-So if you see me after the talk and you want to chat. You can break the ice with something like "You done messed up A-A-RON".
-
-I work at a company call YA, formerly Young America, if you've ever sent in a paper rebate, you may remember sending it to Norwood Young America, Minnesota. So I work on a platform for digital marketing that includes rebates as part of the product line.
+So if you see me after the talk and you want to chat about flow. You can break the ice with something like "You done messed up A-A-RON".
 
 [display images of social media usernames]
 
@@ -18,7 +16,7 @@ You can find me on Twitter, Github at these places. I tweet about only really im
 
 [display image of Wunderground temps for Minneapolis]
 
-By the way, today the high temp for today will be.
+If you're wondering about the weather. Rain is the weather today, so it's a good day to be learning about flow.
 
 [display image asking for questions]
 
@@ -307,9 +305,9 @@ Flow offers enums. Here we have a `Response` type that can have any of the strin
 
 [display slide about maybe types]
 
-There are several different words to describe the concept of a variable that has a type that may or may not hold a value. C# has a Nullable generic type, Java has the Optional generic type, and Haskell has the Maybe. In all cases the idea is that the underlying value of a variable could be null or a completely different type.
+There are several different words to describe the concept of a variable that has a type that may or may not hold a value. C# has a Nullable generic type, Java has the Optional generic type, and Haskell has the Maybe. Flow calls these Maybe types. In all cases the idea is that the underlying value of a variable could be null or a completely different type.
 
-In the case on the screen the variable 'o' has be declared and could be a string, null, or undefined.
+In the case on the screen the variable 'o' maybe is a string and may be undefined or null.
 
 So far I've just scratched the surface of the expressiveness of flow's type system. There's much more that I won't be able to cover today. So it's worth a look at the documentation to see what flow offers.
 
@@ -338,25 +336,54 @@ So flow reports that we have about 66 percent coverage. So not having full cover
 
 So now we can see flow highlighting several areas that are affecting coverage. And if we add back the type annotation we can get to full coverage on this script. So the coverage report can be a very useful tool for identifying areas where useful types can be added.
 
+## Built-in types
+
+Flow offers a lot in the way of built-in types.
+
+[display slide about "Built in types"]
+
+Aside for the basic JavaScript types, string, number, boolean, null and void flow offers a few special types.
+
+[display slide about "any" type]
+
+The any type is simultaneously a subtype and supertype of everything. It's an outlier that is specially treated and it's often used when you just want to tell flow to get out of the way. Use of the `any` type should always be used with caution because in many ways it bypasses the type system.
+
+[display slide about "mixed" type]
+
+Flow offers another type called `mixed`. It's distinguishable from the `any` type because it is a supertype of everything but not a subtype of everything. The documentation describes mixed as a more annoying form of any. If a parameter has a mixed type flow still handles errors based on the underlying type of variable. So if the type is really a string flow won't ever throw an error when passing a string into a function like `takesMixed` on the screen. But if you try to call methods that strings don't have, you will get type errors. So it's often better to use the `mixed` type instead of the `any` type to get the maximum benefits from using flow.
+
+[display slide about other built-in types]
+
+Flow also offers the necessary type declarations for the JavaScript standard library, browser object APIs and the DOM APIs. And the node.js standard library.
+
+And the last set of library definitions flow offers is specifically for working with React. Flow has a built-in understanding of prop types and state, and can work with JSX out-of-the-box.
+
 ## Working with code you don't own
 
 [display title slide "Working with code you don't own"]
 
 It's a reality to be working with third-party code that you didn't write and probably doesn't have types exported. The community for having types in JavaScript is small compared to the overall size of the entire community. So a lot of libraries won't have type definitions.
 
+[display slide about the flow-typed repo]
+
 The `flow-typed` repo is the spot for community supplied type definitions for flow. So several popular libraries are included for support, but many more are missing.
+
+[display slide about notable projects]
+
+If you're looking to use flow, it might take time to get the definitions for third-party libraries that you intend to use. And that very similar to what you would run into if you go the route of using TypeScript.
 
 Some notable inclusions:
 
-Express
-Moment
-mocha
-rx.js
-underscore
-redux
-
+* Express
+* Moment
+* Mocha
+* Rx.js
+* Underscore
+* Redux
 
 ## Editor support
+
+[display next slide]
 
 The editor support for flow is alright in my opinion. I don't use vim myself so I didn't go ahead and try the plugin. The vim users out there will have to try it for themselves. There we're a couple plugins for sublime text, but I really didn't like them, they we're very visually intrusive. I personally like the visuals that the flow plugin for VS Code provides, let's take a look.
 
@@ -368,10 +395,14 @@ The editor support for flow is alright in my opinion. I don't use vim myself so 
 
 After looking at the plugins for these popular editors the issue I run into is that the flow command is leaps and bounds more useful and more informative over any of the IDE support. so I don't feel like I'm getting enough out of plugins.
 
-## Built-in types
-
 ## Learning more about flow
+
+[display slide about learning more about flow]
 
 There's a lot about flow that I wasn't able to get to today. I hope I was able to give you a better understanding of what flow is all about. If you have familiarity with TypeScript I'm sure you could draw a lot of parallels.
 
 To learn more about flow I would push you to read the documentation. It's a good place to get started, but it does leave you with a lot of questions. The flow team is active on twitter so if you have questions you can likely get them answered pretty quickly.
+
+[display thanks and questions slide]
+
+I would like to thank everyone for coming to learn about flow and I believe that I have time for questions any questions that weren't answered during the talk.
