@@ -1,5 +1,9 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "javascript.validate.enable": false,
-    "flow.path": "/usr/local/bin/flow"
+    "flow.path": "/usr/local/bin/flow",
+    "editor.fontSize": 20,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.renderIndentGuides": true
 }

@@ -1,4 +1,5 @@
 // @flow
+// Example 6
 'use strict'
 const Rect = require('./rect.js')
 

@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "coverage": "flow coverage || true",
     "check": "flow check || true",
     "check:rect": "cat rect.js | flow check-contents || true",
     "check:ex1": "cat ex1.js | flow check-contents || true",

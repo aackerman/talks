@@ -1,4 +1,5 @@
 // @flow
+// Example 5
 'use strict'
 const Rect = require('./rect')
 

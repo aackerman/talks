@@ -1,4 +1,5 @@
 // @flow
+// Example 7
 'use strict'
 const Square = require('./square')
 const Rect = require('./rect')
