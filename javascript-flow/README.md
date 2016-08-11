@@ -1,6 +1,4 @@
-## Notes
-
-JavaScript Flow
+## JavaScript Flow
 
 [display image of Flow logo]
 
@@ -48,7 +46,7 @@ In the last week of the class the teacher tried to explain structs and pointers 
 
 [display image of PHP and JavaScript]
 
-I worked with PHP and JavaScript while I was in college and that led me to my first job. And I have been working in JavaScript along with a variety of other languages ever since.
+I worked with PHP and JavaScript while I was in college and that led me to my first job. And I have been working in JavaScript along with a variety of other languages ever since. Although I haven't written any PHP in years.
 
 [display image of Flow logo]
 
@@ -66,11 +64,11 @@ Flow is described as "A static type checker for javascript". For languages that 
     * Python
     * Ruby
 
-Here are a few examples of statically and dynamically typed languages just of reference.
+Here are a few examples of statically and dynamically typed languages just of reference. I personally have extensive experience with dynamically typed languages, I've only grazed the surface of the popular statically typed languages here. They're just not my background. But I've seen the benefits of static typing.
 
 ## What is the point of static typing?
 
-And the first question you might ask is "Why?", "What is the point of static typing?"
+One question you might ask is "Why?", "What is the point of static typing?"
 
 [display image of the question "Why?"]
 
@@ -299,6 +297,22 @@ So the database field has to change, part of the API has to change and the type 
 
 Flow says we don't have a state field anymore. So that's pretty cool. We can change a shared definition of a data object and flow will help us understand all of the cascading changes.
 
+## Enums
+
+[display slide about enums]
+
+Flow offers enums. Here we have a `Response` type that can have any of the string values 'yes', 'no', or 'maybe'. Enums that that can be statically verified are great. It's nice to be able to say, the input is definitely a string, but to be able to refine that down to a strict subset of different strings is really awesome.
+
+## Maybe types
+
+[display slide about maybe types]
+
+There are several different words to describe the concept of a variable that has a type that may or may not hold a value. C# has a Nullable generic type, Java has the Optional generic type, and Haskell has the Maybe. In all cases the idea is that the underlying value of a variable could be null or a completely different type.
+
+In the case on the screen the variable 'o' has be declared and could be a string, null, or undefined.
+
+So far I've just scratched the surface of the expressiveness of flow's type system. There's much more that I won't be able to cover today. So it's worth a look at the documentation to see what flow offers.
+
 ## Flow coverage
 
 It's often the case that flow can understand the majority of your programs by adding a minimal amount of types. As a baseline you want your program to have no type errors. After that flow offers a coverage tool that will allow you to fill in the rest of the types to get to 100% coverage.
@@ -330,13 +344,29 @@ So now we can see flow highlighting several areas that are affecting coverage. A
 
 It's a reality to be working with third-party code that you didn't write and probably doesn't have types exported. The community for having types in JavaScript is small compared to the overall size of the entire community. So a lot of libraries won't have type definitions.
 
-The `flow-typed` repo is the spot for community curated type definitions for flow.
+The `flow-typed` repo is the spot for community supplied type definitions for flow. So several popular libraries are included for support, but many more are missing.
 
-## Tooling support
+Some notable inclusions:
+
+Express
+Moment
+mocha
+rx.js
+underscore
+redux
+
+
+## Editor support
+
+The editor support for flow is alright in my opinion. I don't use vim myself so I didn't go ahead and try the plugin. The vim users out there will have to try it for themselves. There we're a couple plugins for sublime text, but I really didn't like them, they we're very visually intrusive. I personally like the visuals that the flow plugin for VS Code provides, let's take a look.
+
+[open up vs code and the atom editor with nuclide]
 
 * https://github.com/flowtype/vim-flow
 * https://github.com/flowtype/flow-for-vscode
 * https://github.com/facebook/nuclide
+
+After looking at the plugins for these popular editors the issue I run into is that the flow command is leaps and bounds more useful and more informative over any of the IDE support. so I don't feel like I'm getting enough out of plugins.
 
 ## Built-in types
 

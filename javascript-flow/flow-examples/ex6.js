@@ -9,7 +9,7 @@ class Square extends Rect {
   }
 }
 
-const getArea = (r: Square): number => r.getArea()
+const getArea = (s: Square): number => s.getArea()
 
 let s = new Square(4)
 let r = new Rect(4, 6)
