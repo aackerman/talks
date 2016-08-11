@@ -12,11 +12,7 @@ So if you see me after the talk and you want to chat about flow. You can break t
 
 [display images of social media usernames]
 
-You can find me on Twitter, Github at these places. I tweet about only really important stuff, like how hot or cold it is in Minnesota.
-
-[display image of Wunderground temps for Minneapolis]
-
-If you're wondering about the weather. Rain is the weather today, so it's a good day to be learning about flow.
+You can find me on Twitter, Github at these places. I tweet about only really important stuff, like how hot or cold it is in Minnesota. Rain is the weather today, so it's a good day to be learning about flow.
 
 [display image asking for questions]
 
@@ -30,7 +26,7 @@ I grew up about 30 minutes north of here in Coon Rapids. And I went to Coon Rapi
 
 The courses we're teaching C++, probably because that was what the teacher knew.
 
-If you haven't seen this dragon before, and you think what does a dragon have to do with programming, this is an image for the Clang compiler. Which is the default C and C++ compiler that is pre-installed on MacOS.
+If you haven't seen this dragon before, and you're thinking "What does a dragon have to do with programming?", this is the logo for the Clang compiler. Which is the default C and C++ compiler that is pre-installed on MacOS.
 
 I learned about integers, strings, for loops, if/else branching, and displaying words in the command prompt. I had no understanding of what a compiler was, how to handle memory, and I had no understanding of algorithms. So I didn't know a lot about types or why the compiler complained but I could add numbers and display words on a screen. I knew my program needed import iostream.h and return the value zero but I didn't know why.
 
@@ -38,13 +34,17 @@ I learned about integers, strings, for loops, if/else branching, and displaying 
 
 The final project I made was text version of the game black jack. And I remember at the time thinking that it worked pretty well. I'm sure today I would be appalled by the quality and realize that it was completely broken.
 
+In the last week of the class the teacher tried to explain structs and pointers and I don't think anybody in the class really understood.
+
 [display image of c++ struct]
 
-In the last week of the class the teacher tried to explain structs and pointers and I don't think anybody in the class really understood. Those were my first real experiences with programming back in high school and I didn't really understand the tools so I didn't end up doing any programming at home.
+Those were my first real experiences with programming back in high school and I didn't really understand the tools so I didn't end up doing any programming at home.
 
 [display image of PHP and JavaScript]
 
-I worked with PHP and JavaScript while I was in college and that led me to my first job. And I have been working in JavaScript along with a variety of other languages ever since. Although I haven't written any PHP in years.
+I worked with PHP and JavaScript while I was in college and that led me to my first job. And I have been working in JavaScript along with a variety of other languages ever since. Although I haven't written any PHP in years. And to me when I started with JavaScript and I didn't have to worry about type checking it very freeing and I was able to just learn the language instead of being belted in the face with type systems.
+
+And now the pendulum has swung back the other way.
 
 [display image of Flow logo]
 
@@ -62,7 +62,7 @@ Flow is described as "A static type checker for javascript". For languages that 
     * Python
     * Ruby
 
-Here are a few examples of statically and dynamically typed languages just of reference. I personally have extensive experience with dynamically typed languages, I've only grazed the surface of the popular statically typed languages here. They're just not my background. But I've seen the benefits of static typing.
+Here are a few examples of statically and dynamically typed languages just of reference. I personally have extensive experience with dynamically typed languages, I've only grazed the surface of the popular statically typed languages here. They're just not my background. But I've seen the benefits of static typing. So we're on the same page for the rest of the talk, the main difference between statically typed languages and dynamically typed languages is that in statically typed languages all of the variable types can be know when the program is compiled and type information is not deferred until runtime.
 
 ## What is the point of static typing?
 
